@@ -29,7 +29,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 					<h5 className="java mt-3">{nationality}</h5>
 				</div>
 				<div className="face face2 d-flex flex-column align-items-center justify-content-end" style={{backgroundImage:`url(${image})`}}>
-				<h2 className="mt-2" style={{backgroundColor: "white", width: "90%"}}>{name}</h2>
+				<h2 className="mt-2" style={{backgroundColor: "white", width: "90%", borderRadius: "10px"}}>{name}</h2>
 				</div>
 
 			</div>

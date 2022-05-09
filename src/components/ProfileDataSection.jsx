@@ -1,13 +1,13 @@
-const SearchSection = ({title, icon}) => {
+const ProfileDataSection = () => {
     return(
-        <div className="search-sec-container mb-4">
-            <h1>{title}</h1>
+        <div className="search-sec-container">
+            <h1>Test</h1>
            <div className="d-flex align-items-center">
-            <i className={icon}></i>
+            <i class="bi bi-person-fill"></i>
             <input className="ms-3 h-50" type="text" placeholder="type something..."></input>
             </div>
         </div>
     )
 }
 
-export default SearchSection
+export default ProfileDataSection

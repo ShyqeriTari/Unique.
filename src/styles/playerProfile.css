@@ -1,0 +1,12 @@
+.profile-img{
+    width: 90%;
+}
+
+.scroller {
+    height: 92.5vh;
+    overflow-y: scroll;
+    scrollbar-color: black;
+    scrollbar-width: thin;
+  }
+  
+  

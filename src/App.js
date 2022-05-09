@@ -1,21 +1,27 @@
-import React from "react"
-import Card from "./components/Card";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import React, { useEffect } from "react"
+import { Routes, Route, BrowserRouter} from "react-router-dom"
 import Search from "./components/Search";
 import SearchResult from "./components/SearchResult";
 import PlayerProfile from "./components/PlayerProfile";
 import "./App.css"
+import MyNavbar from "./components/MyNavbar";
+import Login from "./components/Login";
 
 function App() {
+
+  const location = window.location.pathname
+
   return (
-    <Router>
+    <BrowserRouter>
+    { location !== "/" ?
+      <MyNavbar/> : <></>}
       <Routes>
-        <Route path="/" exact element={<Card />} />
+        <Route path="/" exact element={<Login/>} />
         <Route path="/search" exact element={<Search />} />
         <Route path="/search-result" exact element={<SearchResult />} />
         <Route path="/player" exact element={<PlayerProfile />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
