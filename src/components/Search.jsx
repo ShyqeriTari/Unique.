@@ -1,4 +1,5 @@
 import { Col, Row } from "react-bootstrap"
+import SearchSection from "./SearchSection"
 
 const Search = () => {
     return(
@@ -9,15 +10,15 @@ const Search = () => {
             </div>
 
             <Row className="m-auto">
-                <Col md={6} lg={4}>player name</Col>
-                <Col md={6} lg={4}>position</Col>
-                <Col md={6} lg={4}>nationality</Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Player name"} icon={"bi bi-person-fill"} /></Col>
+                <Col sm={6} md={6} lg={4}>position</Col>
+                <Col sm={6} md={6} lg={4}>nationality</Col>
             </Row>
 
             <Row className="m-auto">
-                <Col md={6} lg={4}>age</Col>
-                <Col md={6} lg={4}>country</Col>
-                <Col md={6} lg={4}>club</Col>
+                <Col sm={6} md={6} lg={4}>age</Col>
+                <Col sm={6} md={6} lg={4}>country</Col>
+                <Col sm={6} md={6} lg={4}>club</Col>
             </Row>
 
         </div>

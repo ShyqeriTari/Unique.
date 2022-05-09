@@ -29,7 +29,7 @@ const Card = () => {
 					<h5 className="java mt-3">Argentina</h5>
 				</div>
 				<div className="face face2 d-flex flex-column align-items-center justify-content-between">
-				<h2>Lionel Messi</h2>
+				<h2>Van Basten</h2>
 					<img src="https://upload.wikimedia.org/wikipedia/it/4/4d/Marco_van_Basten.jpg" alt="player-img" />
 					
 				</div>
