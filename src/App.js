@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Routes, Route, BrowserRouter} from "react-router-dom"
 import Search from "./components/Search";
 import SearchResult from "./components/SearchResult";

@@ -17,8 +17,8 @@ const MyNavbar = () => {
       </Navbar.Brand>
     <Nav className="ms-auto align-items-center">
       <Nav.Link href="/me">Me</Nav.Link>
-      <Nav.Link href="/favourites-players">Favourites players</Nav.Link>
-      <Nav.Link href="/favourites-clubs">Favourites clubs</Nav.Link>
+      <Nav.Link href="/favourites-players">Fav players</Nav.Link>
+      <Nav.Link href="/favourites-clubs">Fav clubs</Nav.Link>
       <Nav.Link href="/"><i className="bi bi-door-open" style={{fontSize: "25px"}}></i></Nav.Link>
     </Nav>
     </Container>
