@@ -9,16 +9,16 @@ const Search = () => {
             <h4>Search players and clubs by defining search filters</h4>
             </div>
 
-            <Row className="m-auto">
+            <Row className="m-auto mb-5 mt-5">
                 <Col sm={6} md={6} lg={4}><SearchSection title={"Player name"} icon={"bi bi-person-fill"} /></Col>
-                <Col sm={6} md={6} lg={4}>position</Col>
-                <Col sm={6} md={6} lg={4}>nationality</Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Position"} icon={"bi bi-bullseye"} /></Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Nationality"} icon={"bi bi-globe"} /></Col>
             </Row>
 
             <Row className="m-auto">
-                <Col sm={6} md={6} lg={4}>age</Col>
-                <Col sm={6} md={6} lg={4}>country</Col>
-                <Col sm={6} md={6} lg={4}>club</Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Age"} icon={"bi bi-calendar-week"} /></Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Country"} icon={"bi bi-globe"} /></Col>
+                <Col sm={6} md={6} lg={4}><SearchSection title={"Club"} icon={"bi bi-building"} /></Col>
             </Row>
 
         </div>
