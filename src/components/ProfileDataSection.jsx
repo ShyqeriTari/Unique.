@@ -1,6 +1,6 @@
 const ProfileDataSection = () => {
     return(
-        <div className="search-sec-container">
+        <div className="search-sec-container mb-2 mt-2">
             <h1>Test</h1>
            <div className="d-flex align-items-center">
             <i className="bi bi-person-fill"></i>
