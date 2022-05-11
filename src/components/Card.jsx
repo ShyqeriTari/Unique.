@@ -4,7 +4,7 @@ import "../styles/card.scss"
 
 const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality, name}) => {
 	return (
-		<div className="container mb-2">
+		<div className="container mb-4 me-4">
 <Link className="link" to="/player">
 			<div className="card">
 				<div className="face face1">
@@ -29,7 +29,9 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
 				<div className="face face2 d-flex flex-column align-items-center justify-content-end" style={{backgroundImage:`url(${image})`}}>
-				<h2 className="mt-2" style={{backgroundColor: "white", width: "90%", borderRadius: "10px"}}>{name}</h2>
+				<div className="card-name">
+				<h2 className="mt-2">{name}</h2>
+				</div>
 				</div>
 
 			</div>

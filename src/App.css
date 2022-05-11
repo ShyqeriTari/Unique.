@@ -5,6 +5,13 @@ padding: 10px;
 
 }
 
+.fan-sec-container{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  
+  }
+
 .bi{
   font-size: 50px;
 
@@ -12,4 +19,11 @@ padding: 10px;
 
 .search-button{
   width: 50%;
+}
+
+.hor-scroller {
+  width: 100%;
+  overflow-x: scroll;
+  scrollbar-color: black;
+  scrollbar-width: thin;
 }

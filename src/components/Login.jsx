@@ -100,6 +100,7 @@ function Log({ registerView }) {
 
 function Register({ loginView }) {
   const [username, setUsername] = useState("")
+  const [role, setRole] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
 
@@ -107,7 +108,7 @@ function Register({ loginView }) {
 
   const userRegister = async (e) => {
     e.preventDefault()
-    const newUser = { username, password, email }
+    const newUser = { username, role, password, email }
     try {
       let response = await fetch(`${process.env.REACT_APP_USERS_URL}account`, {
         method: "POST",
@@ -142,6 +143,20 @@ function Register({ loginView }) {
       </p>
       <Form onSubmit={(e) => userRegister(e)}>
         <Form.Group className="mt-3">
+        <Form.Label>Username</Form.Label>
+          <Form.Control
+            required
+            size="md"
+            placeholder="Enter Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+           <Form.Label className="mt-3">Role</Form.Label>
+          <Form.Control
+            required
+            size="md"
+            placeholder="Enter Role"
+            onChange={(e) => setRole(e.target.value)}
+          />
           <Form.Label className="mt-3">Email Address</Form.Label>
           <Form.Control
             required
@@ -149,13 +164,6 @@ function Register({ loginView }) {
             type="email"
             placeholder="Enter Email Address"
             onChange={(e) => setEmail(e.target.value)}
-          />
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            required
-            size="md"
-            placeholder="Enter Username"
-            onChange={(e) => setUsername(e.target.value)}
           />
           <Form.Label className="mt-3" type="password">
             Password
