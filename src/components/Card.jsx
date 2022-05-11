@@ -41,7 +41,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 				<h2 className="mt-2">{name}</h2>
 				<div className="d-flex m-2 justify-content-around">
 				<i onClick={()=> {if(disLike === false){setLike(!like)}else{setDisLike(false);setLike(!like)} }} className={like ? "bi bi-heart-fill red-like judge" : "bi bi-heart judge"}></i>
-				<i onClick={()=> {if(like === false){setDisLike(!like)}else{setLike(false);setDisLike(!disLike)}}} className={disLike ? "bi bi-heartbreak-fill red-like judge" : "bi bi-heartbreak judge"}></i>
+				<i onClick={()=> {if(like === false){setDisLike(!disLike)}else{setLike(false);setDisLike(!disLike)}}} className={disLike ? "bi bi-heartbreak-fill red-like judge" : "bi bi-heartbreak judge"}></i>
 				<i onClick={()=> setFav(!fav)} className={fav ? "bi bi-star-fill yellow-fav judge" : "bi bi-star judge"}></i>
 				</div>
 				</div>
