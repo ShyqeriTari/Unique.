@@ -35,6 +35,13 @@ padding: 10px;
   scrollbar-width: thin;
 }
 
+.scroller-club {
+  height: 86vh;
+  overflow-y: scroll;
+  scrollbar-color: black;
+  scrollbar-width: thin;
+}
+
 .judge{
   font-size: 18px;
 }

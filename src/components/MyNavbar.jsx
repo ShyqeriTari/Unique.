@@ -3,7 +3,7 @@ import logo from "../assets/logo_transparent.png"
 const MyNavbar = () => {
     return(
         <>
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" style={{position:"sticky", top: "0", zIndex:"1000"}} variant="dark">
     <Container>
     <Navbar.Brand href="/club">
         <img
@@ -16,8 +16,7 @@ const MyNavbar = () => {
       Unique.
       </Navbar.Brand>
     <Nav className="ms-auto align-items-center">
-      <Nav.Link href="/me">Me</Nav.Link>
-      <Nav.Link href="/favourites-players">Fav players</Nav.Link>
+      <Nav.Link href="/me"><i className="bi bi-person-fill" style={{fontSize: "25px"}}></i></Nav.Link>
       <Nav.Link href="/search"><i className="bi bi-search" style={{fontSize: "25px"}}></i></Nav.Link>
       <Nav.Link href="/"><i className="bi bi-door-open" style={{fontSize: "25px"}}></i></Nav.Link>
     </Nav>

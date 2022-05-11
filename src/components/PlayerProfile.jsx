@@ -17,12 +17,6 @@ const PlayerProfile = () => {
                <div className="scroller">
              <ProfileDataSection/>
              <ProfileDataSection/>
-             <ProfileDataSection/>
-             <ProfileDataSection/>
-             <ProfileDataSection/>
-             <ProfileDataSection/>
-             <ProfileDataSection/>
-             <ProfileDataSection/>
              </div>
            </Col>
            <Col md={3}>

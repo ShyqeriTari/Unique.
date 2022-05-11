@@ -25,7 +25,7 @@ function App() {
         <Route path="/player" exact element={<PlayerProfile />} />
         <Route path="/me" exact element={<FanProfile />} />
         <Route path="/club" exact element={<ClubProfile />} />
-        <Route path="/player-creation" exact element={<PlayerDetailsCreation />} />
+        <Route path="/player-create" exact element={<PlayerDetailsCreation />} />
       </Routes>
     </BrowserRouter>
   );
