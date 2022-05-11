@@ -27,3 +27,22 @@ padding: 10px;
   scrollbar-color: black;
   scrollbar-width: thin;
 }
+
+.scroller {
+  height: 92.5vh;
+  overflow-y: scroll;
+  scrollbar-color: black;
+  scrollbar-width: thin;
+}
+
+.judge{
+  font-size: 18px;
+}
+
+.red-like{
+  color: red;
+}
+
+.yellow-fav{
+  color: yellow;
+}

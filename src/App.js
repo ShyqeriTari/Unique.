@@ -7,6 +7,7 @@ import "./App.css"
 import MyNavbar from "./components/MyNavbar";
 import Login from "./components/Login";
 import FanProfile from "./components/FanProfile";
+import ClubProfile from "./components/ClubProfile";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/search-result" exact element={<SearchResult />} />
         <Route path="/player" exact element={<PlayerProfile />} />
         <Route path="/me" exact element={<FanProfile />} />
+        <Route path="/club" exact element={<ClubProfile />} />
       </Routes>
     </BrowserRouter>
   );
