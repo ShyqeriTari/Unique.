@@ -36,7 +36,7 @@ padding: 10px;
 }
 
 .scroller-club {
-  height: 86vh;
+  height: 81vh;
   overflow-y: scroll;
   scrollbar-color: black;
   scrollbar-width: thin;
