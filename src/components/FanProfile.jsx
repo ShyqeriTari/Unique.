@@ -36,7 +36,7 @@ const FanProfile = () => {
         <div className="fan-sec-container mb-2 mt-2">
             <h1>Fav clubs</h1>
            <div className="hor-scroller d-flex" >
-           <Card  name={"Van basten"} image={"https://gianlucadimarzio.com/images/van_basten_milan_gdm.jpg?p=intextimg&s=d6e09cb71a6e2ae3835c28cf87a3f4b0"}
+           <Card  name={"Juventus"} image={"https://s.yimg.com/cv/apiv2/default/soccer/20190408/500x500/Juventus_wbg.png"}
              nationality={"Netherlands"} club={"A.C. Milan"} position={"STR"} pac={"99"} shot={"99"}  pas={"99"} dri={"99"} def={"99"} phy={"99"}
               /> 
            <Card  name={"Van basten"} image={"https://gianlucadimarzio.com/images/van_basten_milan_gdm.jpg?p=intextimg&s=d6e09cb71a6e2ae3835c28cf87a3f4b0"}

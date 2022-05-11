@@ -8,6 +8,7 @@ import MyNavbar from "./components/MyNavbar";
 import Login from "./components/Login";
 import FanProfile from "./components/FanProfile";
 import ClubProfile from "./components/ClubProfile";
+import PlayerDetailsCreation from "./components/PlayerDetailsCreation";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/player" exact element={<PlayerProfile />} />
         <Route path="/me" exact element={<FanProfile />} />
         <Route path="/club" exact element={<ClubProfile />} />
+        <Route path="/player-creation" exact element={<PlayerDetailsCreation />} />
       </Routes>
     </BrowserRouter>
   );
