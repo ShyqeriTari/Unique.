@@ -1,55 +1,58 @@
-    import { Button, Row, Col } from "react-bootstrap"
+import { Button, Row, Col } from "react-bootstrap"
 import "../styles/card.scss"
+import logo from "../assets/logo_transparent.png"
 
 
 const PlayerDetailsCreation = () => {
 
 	return (
-        <>
-        < Row className="mt-3">
-            <Col md={6}>
-		<div className="container mb-4 me-4">
-			<div className="card" style={{width: "300px", height:"400px"}}>
-				<div className="face d-flex flex-column align-items-center justify-content-end" style={{backgroundImage:`url(data:image/jpeg;base64,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)`, backgroundRepeat: "no-repeat", backgroundPosition:"top", backgroundSize:"cover"}} >
-                <div>
-  <input className="form-control form-control-md" id="formFileLg" type="file"/>
-</div>
-				<div className="card-name">
-				<input type="text" style={{color: "black"}} placeholder="Insert name here..." className="me-2"/>
-				<div className="d-flex m-2 justify-content-around">
-            	</div>
-				</div>
-				</div>
-			</div>
-		</div>
-        </Col>
-        <Col md={6}>
-        <div className="container mb-4 me-4" >
-			<div className="card" style={{width: "300px", height:"400px"}}>
-        <div className="face face1" style={{backgroundImage:`url(data:image/jpeg;base64,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)`, backgroundRepeat: "no-repeat", backgroundPosition:"top", backgroundSize:"cover"}}>
-        <input type="text" style={{color: "black"}} placeholder="Insert Club here..." className="me-2 mb-4"/>
-					<div className="stats content d-flex justify-content-center mb-4" style={{color: "white"}}>
-						
-							<div className="me-2">
-                            <li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>pac</span></li>
-                            <li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>sho</span></li>
-                            <li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>pas</span></li>
-							</div>
-
-							<div style={{color: "white"}}>
-								<li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>dri</span></li>
-								<li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>def</span></li>
-								<li ><input type="number" style={{color: "black", width: "50px"}} className="me-2"/><span>phy</span></li>
+		<>
+			< Row className="mt-3">
+				<Col md={6}>
+					<div className="container mb-4 me-4">
+						<div className="card" style={{ width: "300px", height: "400px" }}>
+							<div className="face" style={{ backgroundImage: `url(${logo})`, backgroundRepeat: "no-repeat", backgroundPosition: "top", backgroundSize: "contain" }} >
+							<div className="d-flex flex-column align-items-center justify-content-end" style={{backgroundColor:"rgba(22,22,22,0.5)", height:"100%"}}>
+								<div>
+									<input className="form-control form-control-md" id="formFileLg" type="file" />
+								</div>
+								<div className="card-name">
+									<input type="text" style={{ color: "black" }} placeholder="Insert name here..." className="me-2" />
+								</div>
+								</div>
 							</div>
 						</div>
-                        <input type="text" style={{color: "black"}} placeholder="Insert Nationality here..." className="me-2"/>
-				</div>
-                </div>
-                </div>
-                </Col>
-        </Row>
-        <Button className="m-auto mt-2 w-50 bg-dark mb-4">Create</Button>
-        </>
+					</div>
+				</Col>
+				<Col md={6}>
+					<div className="container mb-4 me-4" >
+						<div className="card" style={{ width: "300px", height: "400px" }}>
+							<div className="face face1" style={{ backgroundImage: `url(${logo})`, backgroundRepeat: "no-repeat", backgroundPosition: "top", backgroundSize: "contain" }}>
+								<div style={{backgroundColor:"rgba(22,22,22,0.5)", height:"100%"}}>
+								<input type="text" style={{ color: "black" }} placeholder="Insert Club here..." className="me-2 mb-4" />
+								<div className="stats content d-flex justify-content-center mb-4" style={{ color: "white" }}>
+
+									<div className="me-2">
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li>
+									</div>
+
+									<div style={{ color: "white" }}>
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>def</span></li>
+										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li>
+									</div>
+								</div>
+								<input type="text" style={{ color: "black" }} placeholder="Insert Nationality here..." className="me-2" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</Col>
+			</Row>
+			<Button className="m-auto mt-2 w-50 bg-dark mb-4">Create</Button>
+		</>
 	)
 
 }
