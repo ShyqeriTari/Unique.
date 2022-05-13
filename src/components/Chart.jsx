@@ -19,7 +19,7 @@ import {
   );
 
 export const Chart = () => (
-  <Radar className='mt-1' style={{width:"70%", height:"80%", margin:"auto"}} data={{
+  <Radar style={{width:"70%", height:"80%", margin:"auto"}} data={{
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {
