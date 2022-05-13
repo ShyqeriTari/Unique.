@@ -13,7 +13,7 @@ const ClubCard = ({image, club, year, name}) => {
 	return (
 		<div className="container mb-4 me-4">
 			<div className="card">
-			<Link className="link" to="/player">
+			<Link className="link" to="/club">
 				<div className="face face1">
 					<h4 className="details">{club}</h4>
 					<h5 className="details mt-5">{year}</h5>
