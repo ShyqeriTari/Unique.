@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap"
 import "../styles/playerProfile.css"
 import Card from "./Card"
+import ClubCard from "./ClubCard"
 
 const FanProfile = () => {
     return(
@@ -27,8 +28,8 @@ const FanProfile = () => {
             <h1>Fav clubs</h1>
            <div className="hor-scroller d-flex" >
            {Array.apply(0, Array(7)).map(function (x, i) {
-    return <Card  name={"Juventus"} image={"https://s.yimg.com/cv/apiv2/default/soccer/20190408/500x500/Juventus_wbg.png"}
-    nationality={"Netherlands"} club={"A.C. Milan"} position={"STR"} pac={"99"} shot={"99"}  pas={"99"} dri={"99"} def={"99"} phy={"99"}
+    return <ClubCard  name={"Juventus"} image={"https://s.yimg.com/cv/apiv2/default/soccer/20190408/500x500/Juventus_wbg.png"}
+    year={"Founded on 30/08/1995"} club={"F.C. Juventus"}
      /> 
   })}
             </div>
