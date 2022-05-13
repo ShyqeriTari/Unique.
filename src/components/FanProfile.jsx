@@ -7,7 +7,7 @@ const FanProfile = () => {
     return(
        <Row className="g-0">
            <Col md={2}>
-               <div className="">
+               <div className="ms-3">
                 <img src="https://i.pinimg.com/564x/7b/99/a8/7b99a82ddd252b2dea8c8e4008ccd38d.jpg" className="profile-img" alt="profile-img" />
                 <h3>name</h3>
                 <h3>Club from 13/04/2001</h3>

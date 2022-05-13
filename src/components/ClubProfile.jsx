@@ -5,7 +5,7 @@ const ClubProfile = () => {
     return(
        <Row className="g-0">
            <Col md={2}>
-               <div className="">
+               <div className="ms-3">
                 <img src="https://s.yimg.com/cv/apiv2/default/soccer/20190408/500x500/Juventus_wbg.png" className="profile-img" alt="profile-img" />
                 <h3>name</h3>
                 <h3>Founded on 30/08/1995</h3>
