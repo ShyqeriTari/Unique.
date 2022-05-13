@@ -10,6 +10,7 @@ import FanProfile from "./components/FanProfile";
 import ClubProfile from "./components/ClubProfile";
 import PlayerDetailsCreation from "./components/PlayerDetailsCreation";
 import ClubDetailsCreation from "./components/ClubDetailsCreation";
+import PlayerCompare from "./components/PlayerCompare";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/club" exact element={<ClubProfile />} />
         <Route path="/player-create" exact element={<PlayerDetailsCreation />} />
         <Route path="/club-create" exact element={<ClubDetailsCreation />} />
+        <Route path="/player-compare" exact element={<PlayerCompare />} />
       </Routes>
     </BrowserRouter>
   );
