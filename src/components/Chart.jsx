@@ -19,16 +19,27 @@ import {
   );
 
 export const Chart = () => (
-  <Radar data={{
-    labels: ['Pac', 'Sho', 'Pas', 'Dri', 'Def', 'Phy'],
+  <Radar style={{width:"70%", height:"80%"}} data={{
+    labels: [ 'Sho', 'Pas', 'Dri', 'Def', 'Phy', 'Pac'],
     datasets: [
       {
-        label: '# of Votes',
-        data: [8, 9, 7, 9, 4, 8],
+        label: 'Stats',
+        data: [ 70, 55, 45, 87, 92, 63],
+        fill:true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
       },
     ],
-  }}/>
+  }} options = {{
+    scales: {
+        r: {
+            angleLines: {
+                display: false
+            },
+            suggestedMin: 1,
+            suggestedMax: 100
+        }
+    }
+}}/>
 )

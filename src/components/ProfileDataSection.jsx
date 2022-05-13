@@ -1,4 +1,4 @@
-import { Chart } from "./Chart"
+
 
 
 const ProfileDataSection = () => {
@@ -6,7 +6,7 @@ const ProfileDataSection = () => {
         <div className="search-sec-container mb-2 mt-2">
             <h1>Test</h1>
            <div className="d-flex align-items-center">
-           <Chart/>
+           <h5>Hello</h5>
             </div>
         </div>
     )

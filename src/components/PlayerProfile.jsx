@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap"
 import "../styles/playerProfile.css"
 import ProfileDataSection from "./ProfileDataSection"
+import { Chart } from "./Chart"
 
 const PlayerProfile = () => {
     return(
@@ -15,7 +16,7 @@ const PlayerProfile = () => {
            </Col>
            <Col  md={7}>
                <div className="scroller">
-             <ProfileDataSection/>
+               <Chart/>
              <ProfileDataSection/>
              </div>
            </Col>
