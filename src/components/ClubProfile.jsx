@@ -6,8 +6,6 @@ import Card from "./Card";
 const ClubProfile = () => {
 
     const [edit, setEdit] = useState(false)
-    
-    const [addPlayer, setAddPlayer] = useState(undefined)
 
     const [show, setShow] = useState(false);
 
@@ -25,6 +23,8 @@ const ClubProfile = () => {
                 {edit && <input type="text" style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
                 {!edit && <h3>Founded on 30/08/1995</h3>}
                 {edit && <input type="date" style={{ color: "black" }} placeholder="Insert year here..." className="me-2 mt-2" />}
+                {!edit && <h3>Country</h3>}
+                {edit && <input type="text" style={{ color: "black" }} placeholder="Insert city here..." className="me-2 mt-2" />}
                </div>
                {edit&&<Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={()=> setEdit(false)}>Save</Button>}
            </Col>

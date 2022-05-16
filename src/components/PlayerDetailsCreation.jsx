@@ -1,9 +1,22 @@
 import { Button, Row, Col } from "react-bootstrap"
 import "../styles/card.scss"
 import logo from "../assets/logo_transparent.png"
+import { useState } from "react"
 
 
 const PlayerDetailsCreation = () => {
+
+	const [pac, setPac] = useState(undefined)
+
+	const [sho, setSho] = useState(undefined)
+
+	const [pas, setPas] = useState(undefined)
+
+	const [dri, setDri] = useState(undefined)
+
+	const [def, setDef] = useState(undefined)
+
+	const [phy, setPhy] = useState(undefined)
 
 	return (
 		<>
@@ -33,15 +46,15 @@ const PlayerDetailsCreation = () => {
 								<div className="stats content d-flex justify-content-center mb-4" style={{ color: "white" }}>
 
 									<div className="me-2">
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li>
+										<li ><input type="number" onChange={(e)=> setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
+										<li ><input type="number" onChange={(e)=> setSho(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
+										<li ><input type="number" onChange={(e)=> setPas(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li>
 									</div>
 
 									<div style={{ color: "white" }}>
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>def</span></li>
-										<li ><input type="number" style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li>
+										<li ><input type="number" onChange={(e)=> setDri(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
+										<li ><input type="number" onChange={(e)=> setDef(e.target.value)}  style={{ color: "black", width: "50px" }} className="me-2" /><span>def</span></li>
+										<li ><input type="number" onChange={(e)=> setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li>
 									</div>
 								</div>
 								<input type="text" style={{ color: "black" }} placeholder="Insert Nationality here..." className="me-2" />
