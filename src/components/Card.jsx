@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom"
 import "../styles/card.scss"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
 const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality, name}) => {
+
+	const dispatch = useDispatch()
 
 	const [like, setLike] = useState(false)
 	const [disLike, setDisLike] = useState(false)
@@ -37,7 +41,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
 				</Link>: location === "/search-compare-result" ? <Link className="link" to="/player-compare">
-				<div className="face face1">
+				<div onClick={()=> dispatch(setSecondPlayerAction("111"))} className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">
