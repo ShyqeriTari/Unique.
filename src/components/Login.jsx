@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Dropdown, DropdownButton, Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../styles/login.css"
 import logo from "../assets/logo_transparent.png"
@@ -143,7 +143,7 @@ function Register({ loginView }) {
       </p>
       <Form onSubmit={(e) => userRegister(e)}>
         <Form.Group className="mt-3">
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Full name</Form.Label>
           <Form.Control
             required
             size="md"
@@ -151,12 +151,7 @@ function Register({ loginView }) {
             onChange={(e) => setUsername(e.target.value)}
           />
            <Form.Label className="mt-3">Role</Form.Label>
-          <Form.Control
-            required
-            size="md"
-            placeholder="Enter Role"
-            onChange={(e) => setRole(e.target.value)}
-          />
+          <Row><Col className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>Fan</Col><Col className="me-2 bg-white pointer"style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col><Col className="pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col></Row>
           <Form.Label className="mt-3">Email Address</Form.Label>
           <Form.Control
             required
