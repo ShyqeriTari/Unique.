@@ -4,6 +4,8 @@ import SearchSection from "./SearchSection"
 
 const Search = () => {
 
+    const location = window.location.pathname
+
     const navigate = useNavigate()
 
     return(
@@ -25,7 +27,7 @@ const Search = () => {
                 <Col sm={6} md={6} lg={4}><SearchSection title={"Club"} icon={"bi bi-building"} /></Col>
             </Row>
 
-            <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-result") }>Search</Button>
+           { location === "/search-club-player" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-club-result") }>Search</Button> : <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-result") }>Search</Button>}
 
         </div>
     )
