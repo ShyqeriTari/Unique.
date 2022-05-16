@@ -151,7 +151,25 @@ function Register({ loginView }) {
             onChange={(e) => setUsername(e.target.value)}
           />
            <Form.Label className="mt-3">Role</Form.Label>
-          <Row><Col className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>Fan</Col><Col className="me-2 bg-white pointer"style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col><Col className="pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col></Row>
+          <Row>{role === "fan" ? <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
+          {role === "player" ? <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+         </Row>
+         {role === "player" ?<> <Form.Label className="mt-3">Age</Form.Label>
+          <Form.Control
+            required
+            size="md"
+            type="date"
+            placeholder="Enter Birth Date"
+            onChange={(e) => setEmail(e.target.value)}
+          /></> : role === "club" ? <> <Form.Label className="mt-3">Enter Foundation Year</Form.Label>
+          <Form.Control
+            required
+            size="md"
+            type="date"
+            placeholder="Enter Foundation Year"
+            onChange={(e) => setEmail(e.target.value)}
+          /> </>: <> </>}
           <Form.Label className="mt-3">Email Address</Form.Label>
           <Form.Control
             required

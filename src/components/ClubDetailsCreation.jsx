@@ -31,8 +31,6 @@ const ClubDetailsCreation = () => {
 								<div style={{backgroundColor:"rgba(22,22,22,0.5)", height:"100%"}}>
 								<input type="text" style={{ color: "black" }} placeholder="Insert Club name..." className="me-2 mb-4" />
 								<input type="text" style={{ color: "black" }} placeholder="Insert Club city..." className="me-2 mb-4" />
-								<label className="text-white">Foundation year</label>
-								<input type="date" style={{ color: "black" }} placeholder="Insert foundation year..." className="me-2" />
 								</div>
 							</div>
 						</div>

@@ -24,8 +24,10 @@ function App() {
         <Route path="/" exact element={<Login/>} />
         <Route path="/search" exact element={<Search />} />
         <Route path="/search-club-player" exact element={<Search />} />
+        <Route path="/search-compare-player" exact element={<Search />} />
         <Route path="/search-result" exact element={<SearchResult />} />
         <Route path="/search-club-result" exact element={<SearchResult />} />
+        <Route path="/search-compare-result" exact element={<SearchResult />} />
         <Route path="/player" exact element={<PlayerProfile />} />
         <Route path="/me" exact element={<FanProfile />} />
         <Route path="/club" exact element={<ClubProfile />} />
