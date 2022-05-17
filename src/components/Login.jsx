@@ -162,7 +162,7 @@ function Register({ loginView }) {
             type="date"
             placeholder="Enter Birth Date"
             onChange={(e) => setEmail(e.target.value)}
-          /></> : role === "club" ? <> <Form.Label className="mt-3">Enter Foundation Year</Form.Label>
+          /></> : role === "club" ? <> <Form.Label className="mt-3">Foundation Year</Form.Label>
           <Form.Control
             required
             size="md"

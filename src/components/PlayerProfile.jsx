@@ -3,6 +3,7 @@ import "../styles/playerProfile.css"
 import ProfileDataSection from "./ProfileDataSection"
 import { Chart } from "./Chart"
 import { useState } from "react"
+import YoutubeEmbed from "./YoutubeEmbed"
 
 const PlayerProfile = () => {
 
@@ -50,7 +51,10 @@ const PlayerProfile = () => {
                         <h1>Quality</h1>
                         <Chart />
                     </div>
-                    <ProfileDataSection />
+                    <div className="search-sec-container mt-2">
+                        <h1>Video</h1>
+                       <YoutubeEmbed embedId="DH_gBJT9bAg" />
+                    </div>
                 </div>
             </Col>
             <Col md={3}>
