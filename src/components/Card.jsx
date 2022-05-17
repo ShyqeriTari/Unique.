@@ -40,8 +40,30 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 					</div>
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
-				</Link>: location === "/search-compare-result" ? <Link className="link" to="/player-compare">
-				<div onClick={()=> dispatch(setSecondPlayerAction("111"))} className="face face1">
+				</Link>: location === "/search-compare-result1" ? <Link className="link" to="/player-compare">
+				<div onClick={()=> dispatch(setFirstPlayerAction("111"))} className="face face1">
+					<h4 className="details">{club}</h4>
+					<h6 className="details">{position}</h6>
+					<div className="stats content d-flex justify-content-center">
+						<div className="details me-3">
+							<div>
+								<li ><span className="me-2">{pac}</span><span>pac</span></li>
+								<li ><span className="me-2">{shot}</span><span>sho</span></li>
+								<li ><span className="me-2">{pas}</span><span>pas</span></li>
+							</div>
+						</div>
+						<div className="details">
+							<div>
+								<li ><span className="me-2">{dri}</span><span>dri</span></li>
+								<li ><span className="me-2">{def}</span><span>def</span></li>
+								<li ><span className="me-2">{phy}</span><span>phy</span></li>
+							</div>
+						</div>
+					</div>
+					<h5 className="details mt-3">{nationality}</h5>
+				</div>
+				</Link> : location === "/search-compare-result2" ? <Link className="link" to="/player-compare">
+				<div onClick={()=> dispatch(setSecondPlayerAction("222"))} className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">

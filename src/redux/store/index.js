@@ -1,17 +1,20 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux"
 import thunk from "redux-thunk"
-import PlayersToCompareReducer from "../reducers/compareReducer"
+import firstPlayerReducer from "../reducers/firstPlayerReducer"
+import secondPlayerReducer from "../reducers/secondPlayerReducer"
 
 
 const composeFunction = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export const initialState = {
-  comparePlayers: [],
+  firstPlayer: {},
+  secondPlayer: {},
   
 }
 
 const mainReducer = combineReducers({
-comparedPlayers: PlayersToCompareReducer
+firstPlayer: firstPlayerReducer,
+secondPlayer: secondPlayerReducer
 })
 
 const configureStore = createStore(

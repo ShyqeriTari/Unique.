@@ -1,6 +1,7 @@
 import { Col, Row, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import SearchSection from "./SearchSection"
+import { useEffect } from "react"
 
 const Search = () => {
 
@@ -27,7 +28,7 @@ const Search = () => {
                 <Col sm={6} md={6} lg={4}><SearchSection title={"Club"} icon={"bi bi-building"} type={"text"}/></Col>
             </Row>
 
-           { location === "/search-club-player" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-club-result") }>Search</Button> : location === "/search-compare-player" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-compare-result") }>Search</Button> : <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-result") }>Search</Button>}
+           { location === "/search-club-player" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-club-result") }>Search</Button> : location === "/search-compare-player1" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-compare-result1") }>Search</Button> : location === "/search-compare-player2" ? <Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-compare-result2") }>Search</Button>:<Button variant="dark" className="search-button m-auto p-3" onClick={()=> navigate("/search-result") }>Search</Button>}
 
         </div>
     )

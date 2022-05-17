@@ -13,6 +13,11 @@ const PlayerCompare = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [show2, setShow2] = useState(false);
+
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
+
     return(
        <Row className="g-0">
            <Col md={2}>
@@ -37,7 +42,7 @@ const PlayerCompare = () => {
            </Col>
            <Col md={2}>
           
-           <div onClick={handleShow} className="container mb-4 mt-4 me-4">
+           <div onClick={handleShow2} className="container mb-4 mt-4 me-4">
 			<div className="card">
             <i className="bi bi-plus text-white m-auto"/>
 			</div>
@@ -54,11 +59,25 @@ const PlayerCompare = () => {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Link className="link" to={"/search-compare-player"}> Find</Link>
+            <Link className="link" to={"/search-compare-player1"}> Find</Link>
             
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={show2} onHide={handleClose2}>
+        <Modal.Header >
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Link className="link" to={"/search-compare-player2"}> Find</Link>
+            
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose2}>
             Close
           </Button>
         </Modal.Footer>
