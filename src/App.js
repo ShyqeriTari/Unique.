@@ -11,12 +11,14 @@ import ClubProfile from "./components/ClubProfile";
 import PlayerDetailsCreation from "./components/PlayerDetailsCreation";
 import ClubDetailsCreation from "./components/ClubDetailsCreation";
 import PlayerCompare from "./components/PlayerCompare";
+import { useSelector } from "react-redux";
 
 function App() {
 
+  const role = localStorage.getItem("role")
+
   return (
-    <BrowserRouter>
-    
+    <BrowserRouter> 
       <MyNavbar/> 
       <Routes>
         <Route path="/" exact element={<Login/>} />
@@ -29,6 +31,7 @@ function App() {
         <Route path="/search-compare-result1" exact element={<SearchResult />} />
         <Route path="/search-compare-result2" exact element={<SearchResult />} />
         <Route path="/player" exact element={<PlayerProfile />} />
+        {role=== "fan" ? <Route path="/me" exact element={<FanProfile />} /> : role === "player" ? <Route path="/me" exact element={<PlayerProfile />} />: role === "club" && <Route path="/me" exact element={<ClubProfile />} /> }
         <Route path="/me" exact element={<FanProfile />} />
         <Route path="/club" exact element={<ClubProfile />} />
         <Route path="/player-create" exact element={<PlayerDetailsCreation />} />

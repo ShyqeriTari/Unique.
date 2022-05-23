@@ -1,14 +1,12 @@
-import { useEffect } from "react"
 import { Nav, Navbar, Container } from "react-bootstrap"
 import logo from "../assets/logo_transparent.png"
 
 const MyNavbar = () => {
 
-  const location = window.location.pathname
 
     return(
         <>
-{location === "/" ? <></>:<Navbar bg="dark" style={{position:"sticky", top: "0", zIndex:"1000"}} variant="dark">
+<Navbar bg="dark" style={{position:"sticky", top: "0", zIndex:"1000"}} variant="dark">
     <Container>
     <Navbar.Brand href="/club">
         <img
@@ -27,7 +25,7 @@ const MyNavbar = () => {
       <Nav.Link href="/"><i className="bi bi-door-open" style={{fontSize: "25px"}}></i></Nav.Link>
     </Nav>
     </Container>
-    </Navbar>}
+    </Navbar>
         </>
     )
 }

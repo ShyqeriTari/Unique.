@@ -3,6 +3,7 @@ import { Form, Button,  Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../styles/login.css"
 import logo from "../assets/logo_transparent.png"
+import { useDispatch } from "react-redux"
 
 const Login = () => {
   const [view, setView] = useState(true)
@@ -15,7 +16,7 @@ const Login = () => {
   return (
     <div className="welcome">
         <img src={logo} alt="logo" width={"100px"}/>
-      <h1 onClick={()=> navigate("/search")}>Unique.</h1>
+      <h1>Unique.</h1>
       {view ? (
         <Log registerView={changeView} />
       ) : (
@@ -129,9 +130,9 @@ function Log({ registerView }) {
             onChange={(e) => setPassword(e.target.value)}
           />
            <Form.Label className="mt-3">Role</Form.Label>
-          <Row>{role === "fan" ? <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
-          {role === "player" ? <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+          <Row>{role === "fan" ? <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
+          {role === "player" ? <Col onClick={(e) => {setRole("player");  localStorage.setItem("role", "player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player"); localStorage.setItem("role", "player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
         </Form.Group>
         <Button type="submit" className="mt-4 m-auto log-button" variant="dark">
@@ -239,9 +240,9 @@ function Register({ loginView }) {
             onChange={(e) => setName(e.target.value)}
           />
            <Form.Label className="mt-3">Role</Form.Label>
-          <Row>{role === "fan" ? <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
-          {role === "player" ? <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+           <Row>{role === "fan" ? <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
+          {role === "player" ? <Col onClick={(e) => {setRole("player");  localStorage.setItem("role", "player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player"); localStorage.setItem("role", "player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
          <Form.Label className="mt-3">Age</Form.Label>
           <Form.Control
