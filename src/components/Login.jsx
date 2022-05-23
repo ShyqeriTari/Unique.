@@ -46,7 +46,8 @@ function Log({ registerView }) {
         },
       })
       if (response.ok) {
-        console.log(response.json())
+        let data = await response.json()
+        localStorage.setItem("token", data.accessToken)
         navigate("/search")
       } else {
         alert("registration failed")
@@ -65,7 +66,8 @@ function Log({ registerView }) {
           },
         })
         if (response.ok) {
-          console.log(response.json())
+          let data = await response.json()
+          localStorage.setItem("token", data.accessToken)
           navigate("/search")
         } else {
           alert("registration failed")
@@ -83,7 +85,8 @@ function Log({ registerView }) {
           },
         })
         if (response.ok) {
-          console.log(response.json())
+          let data = await response.json()
+          localStorage.setItem("token", data.accessToken)
           navigate("/search")
         } else {
           alert("registration failed")
@@ -153,7 +156,7 @@ function Register({ loginView }) {
 
   const userRegister = async (e) => {
     e.preventDefault()
-    const newUser = { name, birthdate, password, email, country }
+    const newUser = { name, birthdate, password, email, country, role }
     try {
       if(role==="fan"){
       let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/register`, {
@@ -164,7 +167,8 @@ function Register({ loginView }) {
         },
       })
       if (response.ok) {
-        console.log(response.json())
+        let data = await response.json()
+        localStorage.setItem("token", data.accessToken)
         navigate("/search")
       } else {
         alert("registration failed")
@@ -183,7 +187,8 @@ function Register({ loginView }) {
           },
         })
         if (response.ok) {
-          console.log(response.json())
+          let data = await response.json()
+          localStorage.setItem("token", data.accessToken)
           navigate("/search")
         } else {
           alert("registration failed")
@@ -201,7 +206,8 @@ function Register({ loginView }) {
           },
         })
         if (response.ok) {
-          console.log(response.json())
+          let data = await response.json()
+          localStorage.setItem("token", data.accessToken)
           navigate("/search")
         } else {
           alert("registration failed")
