@@ -30,32 +30,70 @@ const Login = () => {
 function Log({ registerView }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [role, setRole] = useState("")
   const navigate = useNavigate()
 
   const userLogin = async (e) => {
     e.preventDefault()
-    const user = { email, password }
+    const User = {  password, email }
     try {
-      let response = await fetch(`${process.env.REACT_APP_USERS_URL}session`, {
+      if(role==="fan"){
+      let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/login`, {
         method: "POST",
-        body: JSON.stringify(user),
-        credentials: "include",
+        body: JSON.stringify(User),
         headers: {
           "Content-type": "application/json",
         },
       })
       if (response.ok) {
-        //console.log(response)
+        console.log(response.json())
         navigate("/search")
       } else {
-        console.log("login failed")
+        alert("registration failed")
         if (response.status === 400) {
-          console.log("bad request")
+          alert("bad request")
         }
         if (response.status === 404) {
-          console.log("page not found")
+          alert("page not found")
         }
-      }
+      }}else if(role==="player"){
+        let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/login`, {
+          method: "POST",
+          body: JSON.stringify(User),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        if (response.ok) {
+          console.log(response.json())
+          navigate("/search")
+        } else {
+          alert("registration failed")
+          if (response.status === 400) {
+            alert("bad request")
+          }
+          if (response.status === 404) {
+            alert("page not found")
+          }
+        }}else if(role==="club"){let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/club/login`, {
+          method: "POST",
+          body: JSON.stringify(User),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        if (response.ok) {
+          console.log(response.json())
+          navigate("/search")
+        } else {
+          alert("registration failed")
+          if (response.status === 400) {
+            alert("bad request")
+          }
+          if (response.status === 404) {
+            alert("page not found")
+          }
+        }}
     } catch (error) {
       console.log(error)
     }
@@ -70,7 +108,7 @@ function Log({ registerView }) {
           {`Sign up here`}
         </span>
       </p>
-      <Form onSubmit={(e) => userLogin(e)}>
+      <Form onSubmit={(e) => role && userLogin(e)}>
         <Form.Group className="mt-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -87,6 +125,11 @@ function Log({ registerView }) {
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+           <Form.Label className="mt-3">Role</Form.Label>
+          <Row>{role === "fan" ? <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
+          {role === "player" ? <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+         </Row>
         </Form.Group>
         <Button type="submit" className="mt-4 m-auto log-button" variant="dark">
           Log In
@@ -99,21 +142,23 @@ function Log({ registerView }) {
 // Register Component**************
 
 function Register({ loginView }) {
-  const [username, setUsername] = useState("")
-  const [role, setRole] = useState("")
+  const [name, setName] = useState("")
+  const [birthdate, setBirthdate] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
+  const [country, setCountry] = useState("")
+  const [role, setRole] = useState("")
 
   const navigate = useNavigate()
 
   const userRegister = async (e) => {
     e.preventDefault()
-    const newUser = { username, role, password, email }
+    const newUser = { name, birthdate, password, email, country }
     try {
-      let response = await fetch(`${process.env.REACT_APP_USERS_URL}account`, {
+      if(role==="fan"){
+      let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/register`, {
         method: "POST",
         body: JSON.stringify(newUser),
-        credentials: "include",
         headers: {
           "Content-type": "application/json",
         },
@@ -129,7 +174,44 @@ function Register({ loginView }) {
         if (response.status === 404) {
           alert("page not found")
         }
-      }
+      }}else if(role==="player"){
+        let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/register`, {
+          method: "POST",
+          body: JSON.stringify(newUser),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        if (response.ok) {
+          console.log(response)
+          navigate("/search")
+        } else {
+          alert("registration failed")
+          if (response.status === 400) {
+            alert("bad request")
+          }
+          if (response.status === 404) {
+            alert("page not found")
+          }
+        }}else if(role==="club"){let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/club/register`, {
+          method: "POST",
+          body: JSON.stringify(newUser),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        if (response.ok) {
+          console.log(response)
+          navigate("/search")
+        } else {
+          alert("registration failed")
+          if (response.status === 400) {
+            alert("bad request")
+          }
+          if (response.status === 404) {
+            alert("page not found")
+          }
+        }}
     } catch (error) {
       console.log(error)
     }
@@ -147,29 +229,30 @@ function Register({ loginView }) {
           <Form.Control
             required
             size="md"
-            placeholder="Enter Username"
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter Full name"
+            onChange={(e) => setName(e.target.value)}
           />
            <Form.Label className="mt-3">Role</Form.Label>
           <Row>{role === "fan" ? <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => setRole("fan")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
           {role === "player" ? <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => setRole("player")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
           {role === "club" ? <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => setRole("club")} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
-         {role === "player" ?<> <Form.Label className="mt-3">Age</Form.Label>
+         <Form.Label className="mt-3">Age</Form.Label>
           <Form.Control
             required
             size="md"
             type="date"
             placeholder="Enter Birth Date"
-            onChange={(e) => setEmail(e.target.value)}
-          /></> : role === "club" ? <> <Form.Label className="mt-3">Foundation Year</Form.Label>
+            onChange={(e) => setBirthdate(e.target.value)}
+          />
+          <Form.Label className="mt-3">Country</Form.Label>
           <Form.Control
             required
             size="md"
-            type="date"
-            placeholder="Enter Foundation Year"
-            onChange={(e) => setEmail(e.target.value)}
-          /> </>: <> </>}
+            type="text"
+            placeholder="Enter Country"
+            onChange={(e) => setCountry(e.target.value)}
+          />
           <Form.Label className="mt-3">Email Address</Form.Label>
           <Form.Control
             required
