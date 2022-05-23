@@ -164,7 +164,7 @@ function Register({ loginView }) {
         },
       })
       if (response.ok) {
-        console.log(response)
+        console.log(response.json())
         navigate("/search")
       } else {
         alert("registration failed")
@@ -183,7 +183,7 @@ function Register({ loginView }) {
           },
         })
         if (response.ok) {
-          console.log(response)
+          console.log(response.json())
           navigate("/search")
         } else {
           alert("registration failed")
@@ -201,7 +201,7 @@ function Register({ loginView }) {
           },
         })
         if (response.ok) {
-          console.log(response)
+          console.log(response.json())
           navigate("/search")
         } else {
           alert("registration failed")
