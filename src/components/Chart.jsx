@@ -18,13 +18,13 @@ import {
     Legend
   );
 
-export const Chart = () => (
+export const Chart = ({name, sho, pas, dri, def, phy, pac}) => (
   <Radar style={{width:"70%", height:"80%", margin:"auto"}} data={{
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {
-        label: 'Name',
-        data: [ 70, 55, 45, 87, 92, 63],
+        label: name,
+        data: [ sho, pas, dri, def, phy, pac],
         fill:true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',

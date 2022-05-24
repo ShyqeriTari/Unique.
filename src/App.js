@@ -11,7 +11,7 @@ import ClubProfile from "./components/ClubProfile";
 import PlayerDetailsCreation from "./components/PlayerDetailsCreation";
 import ClubDetailsCreation from "./components/ClubDetailsCreation";
 import PlayerCompare from "./components/PlayerCompare";
-import { useSelector } from "react-redux";
+
 
 function App() {
 
