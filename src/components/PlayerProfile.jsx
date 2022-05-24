@@ -55,7 +55,7 @@ const PlayerProfile = () => {
                     {edit && <input type="text" style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.position}</h3>}
                     {edit && <input type="text" style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
-                    {!edit && <h3>{user.club}</h3>}
+                    {!edit && <h3>{user.club.name}</h3>}
                     {edit && <input type="text" style={{ color: "black" }} placeholder="Insert club here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.birthdate}</h3>}
                     {!edit && <h3>{user.country}</h3>}
