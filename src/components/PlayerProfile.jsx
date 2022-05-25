@@ -23,6 +23,14 @@ const PlayerProfile = () => {
 
     const [user, setUser] = useState(undefined)
 
+    const [video, setVideo] = useState(false)
+
+    const [name, setName] = useState(undefined)
+
+    const [position, setPosition] = useState(undefined)
+
+    
+
     const fetchData = async () => {
         try {
            
@@ -44,6 +52,66 @@ const PlayerProfile = () => {
           fetchData()
       }, [])
 
+      const modifyVideo = async (e) => {
+        e.preventDefault()
+        const newVideo = { video }
+        try {
+            let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/me`, {
+              method: "PUT",
+              body: JSON.stringify(newVideo),
+              headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+            })
+            if (response.ok) {
+              console.log(response)
+              fetchData()
+             
+            } else {
+              alert("registration failed")
+              if (response.status === 400) {
+                alert("bad request")
+              }
+              if (response.status === 404) {
+                alert("page not found")
+              }
+            }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      const modifyUser = async (e) => {
+        e.preventDefault()
+        const newInfo = { pac, sho, pas, dri, def, phy, name, position }
+        try {
+            let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/me`, {
+              method: "PUT",
+              body: JSON.stringify(newInfo),
+              headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+            })
+            if (response.ok) {
+              console.log(response)
+              fetchData()
+             
+            } else {
+              alert("registration failed")
+              if (response.status === 400) {
+                alert("bad request")
+              }
+              if (response.status === 404) {
+                alert("page not found")
+              }
+            }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
     return (
         <Row className="g-0">
            {user && <> <Col md={2}>
@@ -52,11 +120,11 @@ const PlayerProfile = () => {
                     <i onClick={() => setEdit(!edit)} className="bi bi-three-dots pointer" />
                     {edit && <input className="form-control form-control-md mt-2" id="formFileLg" type="file" />}
                     {!edit && <h3>{user.name}</h3>}
-                    {edit && <input type="text" style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
+                    {edit && <input type="text" onChange={(e) => setName(e.target.value)} style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.position}</h3>}
-                    {edit && <input type="text" style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
+                    {edit && <input type="text" onChange={(e) => setPosition(e.target.value)} style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.club.name}</h3>}
-                    {edit && <input type="text" style={{ color: "black" }} placeholder="Insert club here..." className="me-2 mt-2" />}
+                    {edit && <input type="text"  style={{ color: "black" }} placeholder="Insert club here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.birthdate}</h3>}
                     {!edit && <h3>{user.country}</h3>}
                     {edit && <><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
@@ -67,17 +135,22 @@ const PlayerProfile = () => {
                         <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></>}
 
                 </div>
-                {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={() => setEdit(false)}>Save</Button>}
+                {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyUser(e); setEdit(false); fetchData()}}>Save</Button>}
             </Col>
             <Col md={7}>
                 <div className="scroller">
                     <div className="search-sec-container mt-2">
                         <h1>Quality</h1>
-                        <Chart pac={user.pac} shot={user.sho}  pas={user.pas} dri={user.dri} def={user.def} phy={user.phy} />
+                        <Chart pac={user.pac} sho={user.sho}  pas={user.pas} dri={user.dri} def={user.def} phy={user.phy} />
                     </div>
                     <div className="search-sec-container mt-2">
+                        <div className="d-flex align-items-center justify-content-between">
                         <h1>Video</h1>
-                       <YoutubeEmbed embedId="DH_gBJT9bAg" />
+                        <i onClick={() => setVideo(!video)} className="bi bi-three-dots pointer" />
+                        </div>
+                      {!video && <YoutubeEmbed embedId={user.video} />}
+                      {video &&<div className="d-flex"> <input type="text" placeholder="insert video id" onChange={(e) => setVideo(e.target.value)} style={{ color: "black", width: "30%", }} className="ms-3" />
+                      <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyVideo(e); setVideo(!video)}}>Save</Button></div>}
                     </div>
                 </div>
             </Col>
