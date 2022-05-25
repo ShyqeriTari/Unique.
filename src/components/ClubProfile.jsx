@@ -127,9 +127,9 @@ const ClubProfile = () => {
             <i className="bi bi-plus text-white m-auto"/>
 			</div>
 		</div> </Col>
-            {Array.apply(0, Array(25)).map(function (x, i) {
-    return <Col> <span className="text-danger pointer">Remove</span> <Card  name={"Van basten"} image={"https://gianlucadimarzio.com/images/van_basten_milan_gdm.jpg?p=intextimg&s=d6e09cb71a6e2ae3835c28cf87a3f4b0"}
-    nationality={"Netherlands"} club={"A.C. Milan"} position={"STR"} pac={"99"} shot={"99"}  pas={"99"} dri={"99"} def={"99"} phy={"99"}
+            {user.players.map(player => {
+    return <Col> <span className="text-danger pointer">Remove</span> <Card  name={player.name} image={player.image}
+    nationality={player.country} club={player.club.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
   })}</Row>
   </div>

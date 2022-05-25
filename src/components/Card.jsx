@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality, name, player}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player}) => {
 
 	const dispatch = useDispatch()
 
@@ -57,7 +57,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 						<div className="details me-3">
 							<div>
 								<li ><span className="me-2">{pac}</span><span>pac</span></li>
-								<li ><span className="me-2">{shot}</span><span>sho</span></li>
+								<li ><span className="me-2">{sho}</span><span>sho</span></li>
 								<li ><span className="me-2">{pas}</span><span>pas</span></li>
 							</div>
 						</div>
@@ -79,7 +79,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 						<div className="details me-3">
 							<div>
 								<li ><span className="me-2">{pac}</span><span>pac</span></li>
-								<li ><span className="me-2">{shot}</span><span>sho</span></li>
+								<li ><span className="me-2">{sho}</span><span>sho</span></li>
 								<li ><span className="me-2">{pas}</span><span>pas</span></li>
 							</div>
 						</div>
@@ -101,7 +101,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 						<div className="details me-3">
 							<div>
 								<li ><span className="me-2">{pac}</span><span>pac</span></li>
-								<li ><span className="me-2">{shot}</span><span>sho</span></li>
+								<li ><span className="me-2">{sho}</span><span>sho</span></li>
 								<li ><span className="me-2">{pas}</span><span>pas</span></li>
 							</div>
 						</div>
@@ -123,7 +123,7 @@ const Card = ({image, club, position, pac, shot, pas, dri, def, phy, nationality
 						<div className="details me-3">
 							<div>
 								<li ><span className="me-2">{pac}</span><span>pac</span></li>
-								<li ><span className="me-2">{shot}</span><span>sho</span></li>
+								<li ><span className="me-2">{sho}</span><span>sho</span></li>
 								<li ><span className="me-2">{pas}</span><span>pas</span></li>
 							</div>
 						</div>
