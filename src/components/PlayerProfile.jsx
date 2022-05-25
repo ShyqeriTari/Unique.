@@ -4,6 +4,7 @@ import ProfileDataSection from "./ProfileDataSection"
 import { Chart } from "./Chart"
 import { useState, useEffect } from "react"
 import YoutubeEmbed from "./YoutubeEmbed"
+import axios from "axios"
 
 const PlayerProfile = () => {
 
@@ -69,7 +70,7 @@ const PlayerProfile = () => {
               fetchData()
              
             } else {
-              alert("registration failed")
+              alert("Video failed")
               if (response.status === 400) {
                 alert("bad request")
               }
@@ -81,6 +82,35 @@ const PlayerProfile = () => {
           console.log(error)
         }
       }
+
+      const formData = new FormData()
+
+      const uploadImg = (e) => {
+        formData.append("image", e.target.files[0])
+      }
+
+      const submitFile = (e) => {
+        e.preventDefault()
+    
+        axios({
+          method: "put",
+          url:`${process.env.REACT_APP_LOCAL_URL}/player/imageUpload`,
+          data: formData,
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        })
+          .then(function (response) {
+            fetchData()
+            console.log(response)
+          })
+          .catch(function (response) {
+            //handle error
+            console.log(response)
+          })
+      }
+    
 
       const modifyUser = async (e) => {
         e.preventDefault()
@@ -99,7 +129,7 @@ const PlayerProfile = () => {
               fetchData()
              
             } else {
-              alert("registration failed")
+              alert("Modification Failed")
               if (response.status === 400) {
                 alert("bad request")
               }
@@ -116,14 +146,15 @@ const PlayerProfile = () => {
         <Row className="g-0">
            {user && <> <Col md={2}>
                 <div className="ms-3">
-                    <img src="https://i.pinimg.com/564x/7b/99/a8/7b99a82ddd252b2dea8c8e4008ccd38d.jpg" className="profile-img" alt="profile-img" />
+                    <img src={user.image} className="profile-img" alt="profile-img" />
                     <i onClick={() => setEdit(!edit)} className="bi bi-three-dots pointer" />
-                    {edit && <input className="form-control form-control-md mt-2" id="formFileLg" type="file" />}
+                    {edit && <input className="form-control form-control-md mt-2" onChange={(e) => {uploadImg(e)}} id="formFileLg" type="file" />}
+                    {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
                     {!edit && <h3>{user.name}</h3>}
                     {edit && <input type="text" onChange={(e) => setName(e.target.value)} style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.position}</h3>}
                     {edit && <input type="text" onChange={(e) => setPosition(e.target.value)} style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
-                    {!edit && <h3>{user.club.name}</h3>}
+                    {!edit && <h3>{user.club?.name}</h3>}
                     {edit && <input type="text"  style={{ color: "black" }} placeholder="Insert club here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.birthdate}</h3>}
                     {!edit && <h3>{user.country}</h3>}
@@ -135,7 +166,7 @@ const PlayerProfile = () => {
                         <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></>}
 
                 </div>
-                {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyUser(e); setEdit(false); fetchData()}}>Save</Button>}
+                {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyUser(e); setEdit(false); submitFile(e)}}>Save</Button>}
             </Col>
             <Col md={7}>
                 <div className="scroller">
