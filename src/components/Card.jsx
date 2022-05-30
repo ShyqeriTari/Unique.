@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike}) => {
 
 	const dispatch = useDispatch()
 
@@ -142,8 +142,14 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				<div className="card-name">
 				<h2 className="mt-2">{name}</h2>
 				<div className="d-flex m-2 justify-content-around">
+				<div>	
 				<i onClick={()=> {if(disLike === false){setLike(!like)}else{setDisLike(false);setLike(!like)} }} className={like ? "bi bi-heart-fill red-like judge" : "bi bi-heart judge"}></i>
+				<span className="ms-2">{userlike}</span>
+				</div>
+				<div>
 				<i onClick={()=> {if(like === false){setDisLike(!disLike)}else{setLike(false);setDisLike(!disLike)}}} className={disLike ? "bi bi-heartbreak-fill red-like judge" : "bi bi-heartbreak judge"}></i>
+				<span className="ms-2">{userdislike}</span>
+				</div>
 				{role === "fan" && <i onClick={()=> {setFav(!fav); addFavPlayer()}} className={fav ? "bi bi-star-fill yellow-fav judge" : "bi bi-star judge"}></i>}
 				</div>
 				</div>
