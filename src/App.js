@@ -26,10 +26,6 @@ function App() {
         <Route path="/search-club-player" exact element={<Search />} />
         <Route path="/search-compare-player1" exact element={<Search />} />
         <Route path="/search-compare-player2" exact element={<Search />} />
-        <Route path="/search-result" exact element={<SearchResult />} />
-        <Route path="/search-club-result" exact element={<SearchResult />} />
-        <Route path="/search-compare-result1" exact element={<SearchResult />} />
-        <Route path="/search-compare-result2" exact element={<SearchResult />} />
         <Route path="/player" exact element={<PlayerProfile />} />
         {role=== "fan" ? <Route path="/me" exact element={<FanProfile />} /> : role === "player" ? <Route path="/me" exact element={<PlayerProfile />} />: role === "club" && <Route path="/me" exact element={<ClubProfile />} /> }
         <Route path="/me" exact element={<FanProfile />} />
