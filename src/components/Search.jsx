@@ -2,6 +2,7 @@ import { Col, Row, Button } from "react-bootstrap"
 import SearchSection from "./SearchSection"
 import { useState } from "react"
 import Card from "./Card";
+import ClubCard from "./ClubCard";
 
 const Search = () => {
 
@@ -10,7 +11,9 @@ const Search = () => {
     const [country, setCountry] = useState("")
     const [names, setNames] = useState("")
     const [result, setResult] = useState(false)
-    const [fetchResult, setFetchResult] = useState(undefined)
+    const [fetchPlayerResult, setFetchPlayerResult] = useState(undefined)
+    const [fetchClubResult, setFetchClubResult] = useState(undefined)
+    const [role, setRole] = useState("player")
 
     const changeName = (value) => {
         setNames(value)
@@ -28,7 +31,7 @@ const Search = () => {
         setPosition(value)
     }
 
-    const fetchSearchResult = async (e) => {
+    const fetchPlayerSearchResult = async (e) => {
         e.preventDefault()
             try {
               const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player?name=/${names}/i&country=/${country}/i&birthdate=/${birthdate}/i&position=/${position}/i`, {
@@ -38,7 +41,24 @@ const Search = () => {
               });
               const data = await response.json();
               console.log(data)
-              setFetchResult(data);
+              setFetchPlayerResult(data);
+              
+            } catch (error) {
+              console.log(error);
+            }
+    }
+
+    const fetchClubSearchResult = async (e) => {
+        e.preventDefault()
+            try {
+              const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/club?name=/${names}/i&country=/${country}/i`, {
+                  headers:{
+                      "Authorization": `Bearer ${localStorage.getItem("token")}`
+                  }
+              });
+              const data = await response.json();
+              console.log(data)
+              setFetchClubResult(data);
               
             } catch (error) {
               console.log(error);
@@ -47,10 +67,14 @@ const Search = () => {
 
     return(
         <div>
-           {!result && <> <div className="d-flex justify-content-between p-2">
+           {!result && role === "player" && <> <div className="d-flex justify-content-between p-2">
                 <div>
             <h2>Search</h2>
             <h4>Search players and clubs by defining search filters</h4>
+            <Row>
+          {role === "player" ? <Col onClick={(e) => {setRole("player");  localStorage.setItem("role", "player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player"); localStorage.setItem("role", "player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+         </Row>
             </div>
             </div>
 
@@ -62,12 +86,38 @@ const Search = () => {
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
-        <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchSearchResult(e)} }>Search</Button>
+        <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
         </>}
-            {result && fetchResult && <div className="text-center">
+        {!result && role === "club" && <> <div className="d-flex justify-content-between p-2">
+                <div>
+            <h2>Search</h2>
+            <h4>Search players and clubs by defining search filters</h4>
+            <Row>
+          {role === "player" ? <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+         </Row>
+            </div>
+            </div>
+
+            <Row className="m-auto mb-4 mt-5">
+                <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
+
+                <Col sm={6} md={6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
+            </Row>
+
+        <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchClubSearchResult(e)} }>Search</Button>
+        </>}
+            {result && role === "player" && fetchPlayerResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchResult && fetchResult.map((player, idx )=> <Col key={idx}> <Card  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+  }
+        </Row>
+        </div>}
+        {result && role === "club" && fetchClubResult && <div className="text-center">
+            <h1 className="mb-5">Result</h1>
+        <Row>
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard  name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}
