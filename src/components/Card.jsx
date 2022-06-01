@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id}) => {
 
 	const dispatch = useDispatch()
 
@@ -115,7 +115,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 					</div>
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
-				</Link> : <Link className="link" to="/player">
+				</Link> : <Link className="link" to={`/player/${id}`}>
 				<div className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>

@@ -5,6 +5,7 @@ import { Chart } from "./Chart"
 import { useState, useEffect } from "react"
 import YoutubeEmbed from "./YoutubeEmbed"
 import axios from "axios"
+import { useParams } from "react-router-dom"
 
 const PlayerProfile = () => {
 
@@ -30,6 +31,7 @@ const PlayerProfile = () => {
 
     const [position, setPosition] = useState(undefined)
 
+    const params = useParams()
     
 
     const fetchData = async () => {
@@ -49,8 +51,9 @@ const PlayerProfile = () => {
         }
       };
 
-      useEffect(()=>{
-          fetchData()
+      useEffect(()=>{if(params.id){
+        console.log("OTHER")
+      }else{fetchData()} 
       }, [])
 
       const modifyVideo = async (e) => {

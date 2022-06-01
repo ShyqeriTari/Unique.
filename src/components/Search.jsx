@@ -72,8 +72,8 @@ const Search = () => {
             <h2>Search</h2>
             <h4>Search players and clubs by defining search filters</h4>
             <Row>
-          {role === "player" ? <Col onClick={(e) => {setRole("player");  localStorage.setItem("role", "player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player"); localStorage.setItem("role", "player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+          {role === "player" ? <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
             </div>
             </div>
@@ -110,14 +110,14 @@ const Search = () => {
             {result && role === "player" && fetchPlayerResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
   }
         </Row>
         </div>}
         {result && role === "club" && fetchClubResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard  name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}

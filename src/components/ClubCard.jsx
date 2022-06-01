@@ -3,7 +3,7 @@ import "../styles/card.scss"
 import { useState } from "react"
 
 
-const ClubCard = ({image, club, year, name, city}) => {
+const ClubCard = ({image, club, year, name, city, id}) => {
 
 	const [like, setLike] = useState(false)
 	const [disLike, setDisLike] = useState(false)
@@ -44,7 +44,7 @@ const ClubCard = ({image, club, year, name, city}) => {
 	return (
 		<div className="container mb-4 me-4">
 			<div className="card">
-			<Link className="link" to="/club">
+			<Link className="link" to={`/club/${id}`}>
 				<div className="face face1">
 					<h4 className="details">{name}</h4>
 					<h5 className="details mt-2">{city}</h5>
