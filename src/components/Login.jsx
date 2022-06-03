@@ -3,6 +3,7 @@ import { Form, Button,  Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../styles/login.css"
 import logo from "../assets/logo_transparent.png"
+import logoBlack from "../assets/logo-black.png"
 import { useDispatch } from "react-redux"
 
 const Login = () => {
@@ -15,7 +16,7 @@ const Login = () => {
   const navigate = useNavigate()
   return (
     <div className="welcome">
-        <img src={logo} alt="logo" width={"100px"}/>
+        <img src={logoBlack} alt="logo_black" width={"100px"}/>
       <h1>Unique.</h1>
       {view ? (
         <Log registerView={changeView} />
@@ -31,7 +32,7 @@ const Login = () => {
 function Log({ registerView }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [role, setRole] = useState("")
+  const [role, setRole] = useState("fan")
   const navigate = useNavigate()
 
   const userLogin = async (e) => {
@@ -129,7 +130,7 @@ function Log({ registerView }) {
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-           <Form.Label className="mt-3">Role</Form.Label>
+           <Form.Label className="mt-3">Select Role</Form.Label>
           <Row>{role === "fan" ? <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col> : <Col onClick={(e) => {setRole("fan");  localStorage.setItem("role", "fan")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>fan</Col>}
           {role === "player" ? <Col onClick={(e) => {setRole("player");  localStorage.setItem("role", "player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player"); localStorage.setItem("role", "player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
           {role === "club" ? <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club");  localStorage.setItem("role", "club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
@@ -151,7 +152,7 @@ function Register({ loginView }) {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   const [country, setCountry] = useState("")
-  const [role, setRole] = useState("")
+  const [role, setRole] = useState("fan")
 
   const navigate = useNavigate()
 

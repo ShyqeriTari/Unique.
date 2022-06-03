@@ -66,23 +66,22 @@ const Search = () => {
     }
 
     return(
-        <div>
-           {!result && role === "player" && <> <div className="d-flex justify-content-between p-2">
+        <div className="mt-5" style={{paddingLeft: "20%", paddingRight: "20%"}}>
+           {!result && role === "player" && <> <div className="d-flex justify-content-center">
                 <div>
-            <h2>Search</h2>
             <h4>Search players and clubs by defining search filters</h4>
-            <Row>
-          {role === "player" ? <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+            <Row >
+          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
             </div>
             </div>
 
-            <Row className="m-auto mb-4 mt-5">
+            <Row className="mb-4 mt-5 d-flex">
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Position"} icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
 
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Birth year"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
+                <Col sm={6} md={6} lg={6}><SearchSection title={"Birth year"} size={"140%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
@@ -90,7 +89,6 @@ const Search = () => {
         </>}
         {!result && role === "club" && <> <div className="d-flex justify-content-between p-2">
                 <div>
-            <h2>Search</h2>
             <h4>Search players and clubs by defining search filters</h4>
             <Row>
           {role === "player" ? <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}

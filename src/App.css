@@ -1,10 +1,3 @@
-.search-sec-container{
-border: 1px solid black;
-border-radius: 10px;
-padding: 10px;
-
-}
-
 .fan-sec-container{
   border: 1px solid black;
   border-radius: 10px;
@@ -76,4 +69,8 @@ padding: 10px;
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+.w-200{
+  width: "50px";
 }
