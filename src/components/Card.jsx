@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id, compare}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id, compare, handleClose}) => {
 
 	const dispatch = useDispatch()
 
@@ -49,7 +49,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 	return (
 		<div className="container mb-4 me-4">
 			<div className="card">{ compare === "1" ?
-				<div onClick={()=> dispatch(setFirstPlayerAction(player))} className="face face1">
+				<div onClick={()=> {dispatch(setFirstPlayerAction(player)); handleClose()}}  className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">
@@ -71,7 +71,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
 				 : compare=== "2" ? 
-				<div onClick={()=> dispatch(setSecondPlayerAction(player))} className="face face1">
+				<div onClick={()=> {dispatch(setSecondPlayerAction(player)); handleClose()}} className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">

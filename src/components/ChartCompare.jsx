@@ -8,6 +8,7 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
+import { useSelector } from 'react-redux';
 
   ChartJS.register(
     RadialLinearScale,
@@ -18,21 +19,27 @@ import {
     Legend
   );
 
-export const ChartCompare = () => (
+export const ChartCompare = () => {
+
+  const player1 = useSelector((state)=> state.firstPlayer)
+
+    const player2 = useSelector((state)=> state.secondPlayer)
+
+return(
   <Radar style={{width:"70%", height:"80%", margin:"auto"}} data={{
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {
-        label: 'Name',
-        data: [ 70, 55, 45, 87, 92, 63],
+        label: player1.name,
+        data: [ player1.sho, player1.pas, player1.dri, player1.def, player1.phy, player1.pac],
         fill:true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
       },
       {
-        label: 'Name',
-        data: [ 30, 70, 85, 37, 62, 83],
+        label: player2.name,
+        data: [ player2.sho, player2.pas, player2.dri, player2.def, player2.phy, player2.pac],
         fill:true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgb(54, 162, 235)',
@@ -50,4 +57,4 @@ export const ChartCompare = () => (
         }
     }
 }}/>
-)
+)}
