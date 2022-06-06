@@ -64,6 +64,7 @@ const PlayerDetailsCreation = () => {
 					</div>
 				</Col>
 			</Row>
+			
 			<Button className="m-auto mt-2 w-50 bg-dark mb-4">Create</Button>
 		</>
 	)
