@@ -156,9 +156,18 @@ const PlayerProfile = () => {
               }
           });
           const data = await response.json();
+
+          const response2 = await fetch(process.env.REACT_APP_LOCAL_URL + "/player/me", {
+            headers:{
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        const data2 = await response2.json();
+        if(data._id === data2._id){
+        setUser(data2);}else{
           console.log(data)
           setViewPlayer(data);
-          
+        }
         } catch (error) {
           console.log(error);
         }
