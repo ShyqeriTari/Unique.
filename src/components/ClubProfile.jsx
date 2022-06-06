@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Button, Modal } from "react-bootstrap"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
 import axios from "axios";
 
@@ -18,8 +18,12 @@ const ClubProfile = () => {
 
     const [birthdate, setBirthdate] = useState(undefined)
 
+    const [viewClub, setViewClub] = useState(undefined)
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const params = useParams()
 
   const fetchData = async () => {
     try {
@@ -38,8 +42,28 @@ const ClubProfile = () => {
     }
   };
 
+  const getClub = async () => {
+    try {
+       
+      const response = await fetch(process.env.REACT_APP_LOCAL_URL + "/club/"+ params.id, {
+          headers:{
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+      });
+      const data = await response.json();
+      console.log(data)
+      setViewClub(data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(()=>{
-      fetchData()
+    if(params.id){
+      getClub()
+    }else{
+      fetchData()}
   }, [])
 
   const formData = new FormData()
@@ -103,7 +127,7 @@ const ClubProfile = () => {
 
     return(
      <>  <Row className="g-0">
-          {user && <> <Col md={2}>
+          {user && <> <Col md={3}>
                <div className="ms-3">
                 <img src={user.image} className="profile-img" alt="profile-img" />
                 <i onClick={()=> setEdit(!edit)} className="bi bi-three-dots pointer"/>
@@ -118,7 +142,7 @@ const ClubProfile = () => {
                </div>
                {edit&&<Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
            </Col>
-           <Col md={10} >
+           <Col md={9} >
            <div className=" search-sec-container me-2 mt-2 mb-2"> 
            <h2>Players</h2> 
             <Row className="scroller-club text-center"> 
@@ -131,7 +155,30 @@ const ClubProfile = () => {
     return <Col> <span className="text-danger pointer">Remove</span> <Card  name={player.name} image={player.image}
     nationality={player.country} club={player.club.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
-  })}</Row>
+  })}
+  
+  </Row>
+  </div>
+           </Col>  </>}
+           {viewClub && <> <Col md={3}>
+               <div className="ms-3">
+                <img src={viewClub.image} className="profile-img" alt="profile-img" />
+               <h3>{viewClub.name}</h3>
+                 <h3>Founded on {viewClub.birthdate}</h3>
+                 <h3>{viewClub.country}</h3>
+               </div>
+           </Col>
+           <Col md={9} >
+           <div className=" search-sec-container me-2 mt-2 mb-2"> 
+           <h2>Players</h2> 
+            <Row className="scroller-club text-center"> 
+            {viewClub.players.map(player => {
+    return <Col> <Card id={player._id} name={player.name} image={player.image}
+    nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
+     />  </Col>
+  })}
+  
+  </Row>
   </div>
            </Col>  </>}
        </Row>

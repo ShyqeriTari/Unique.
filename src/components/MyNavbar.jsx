@@ -8,7 +8,7 @@ const MyNavbar = () => {
         <>
 <Navbar bg="dark" style={{position:"sticky", top: "0", zIndex:"1000"}} variant="dark">
     <Container>
-    <Navbar.Brand href="/club">
+    <Navbar.Brand >
         <img
           alt="logo-navbar"
           src={logo}

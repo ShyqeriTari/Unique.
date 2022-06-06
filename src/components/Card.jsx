@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id, compare}) => {
 
 	const dispatch = useDispatch()
 
@@ -19,7 +19,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 
 	const addFavPlayer = async (e) => {
 		e.preventDefault()
-		const newUser = { player }
+		const newUser = { id }
 		try {
 		  if(role==="fan"){
 		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/addPlayer`, {
@@ -48,9 +48,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 
 	return (
 		<div className="container mb-4 me-4">
-			<div className="card">
-			{location === "/search-club-result" ? <Link className="link" to="/club">
-				<div className="face face1">
+			<div className="card">{ compare === "1" ?
+				<div onClick={()=> dispatch(setFirstPlayerAction(player))} className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">
@@ -71,8 +70,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 					</div>
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
-				</Link>: location === "/search-compare-result1" ? <Link className="link" to="/player-compare">
-				<div onClick={()=> dispatch(setFirstPlayerAction("111"))} className="face face1">
+				 : compare=== "2" ? 
+				<div onClick={()=> dispatch(setSecondPlayerAction(player))} className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
 					<div className="stats content d-flex justify-content-center">
@@ -93,29 +92,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 					</div>
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
-				</Link> : location === "/search-compare-result2" ? <Link className="link" to="/player-compare">
-				<div onClick={()=> dispatch(setSecondPlayerAction("222"))} className="face face1">
-					<h4 className="details">{club}</h4>
-					<h6 className="details">{position}</h6>
-					<div className="stats content d-flex justify-content-center">
-						<div className="details me-3">
-							<div>
-								<li ><span className="me-2">{pac}</span><span>pac</span></li>
-								<li ><span className="me-2">{sho}</span><span>sho</span></li>
-								<li ><span className="me-2">{pas}</span><span>pas</span></li>
-							</div>
-						</div>
-						<div className="details">
-							<div>
-								<li ><span className="me-2">{dri}</span><span>dri</span></li>
-								<li ><span className="me-2">{def}</span><span>def</span></li>
-								<li ><span className="me-2">{phy}</span><span>phy</span></li>
-							</div>
-						</div>
-					</div>
-					<h5 className="details mt-3">{nationality}</h5>
-				</div>
-				</Link> : <Link className="link" to={`/player/${id}`}>
+				 : <Link className="link" to={`/player/${id}`}>
 				<div className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>

@@ -4,6 +4,7 @@ import "../styles/playerProfile.css"
 import { ChartCompare } from "./ChartCompare"
 import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 
 const PlayerCompare = () => {
 
@@ -54,33 +55,31 @@ const PlayerCompare = () => {
                 <h3>Age</h3>
                </div>
            </Col>
-           <Modal show={show} onHide={handleClose}>
-        <Modal.Header >
-          <Modal.Title>Modal heading</Modal.Title>
+      <Modal
+        size="xl"
+        show={show}
+        onHide={() => handleClose()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Large Modal
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-            <Link className="link" to={"/search-compare-player1"}> Find</Link>
-            
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
+        <Modal.Body><Search compare={"1"}/></Modal.Body>
       </Modal>
-      <Modal show={show2} onHide={handleClose2}>
-        <Modal.Header >
-          <Modal.Title>Modal heading</Modal.Title>
+      <Modal
+        size="xl"
+        show={show2}
+        onHide={() => handleClose2()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Large Modal
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-            <Link className="link" to={"/search-compare-player2"}> Find</Link>
-            
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose2}>
-            Close
-          </Button>
-        </Modal.Footer>
+        <Modal.Body><Search compare={"2"}/></Modal.Body>
       </Modal>
        </Row>
     )

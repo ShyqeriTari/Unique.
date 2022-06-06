@@ -25,6 +25,8 @@ const PlayerProfile = () => {
 
     const [user, setUser] = useState(undefined)
 
+    const [viewPlayer, setViewPlayer] = useState(undefined)
+
     const [video, setVideo] = useState(false)
 
     const [name, setName] = useState(undefined)
@@ -52,7 +54,7 @@ const PlayerProfile = () => {
       };
 
       useEffect(()=>{if(params.id){
-        console.log("OTHER")
+        getPlayer()
       }else{fetchData()} 
       }, [])
 
@@ -145,9 +147,26 @@ const PlayerProfile = () => {
         }
       }
 
+      const getPlayer = async () => {
+        try {
+           
+          const response = await fetch(process.env.REACT_APP_LOCAL_URL + "/player/" + params.id, {
+              headers:{
+                  "Authorization": `Bearer ${localStorage.getItem("token")}`
+              }
+          });
+          const data = await response.json();
+          console.log(data)
+          setViewPlayer(data);
+          
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
     return (
         <Row className="g-0">
-           {user && <> <Col md={2}>
+           {user && <> <Col md={3}>
                 <div className="ms-3">
                     <img src={user.image} className="profile-img" alt="profile-img" />
                     <i onClick={() => setEdit(!edit)} className="bi bi-three-dots pointer" />
@@ -171,7 +190,7 @@ const PlayerProfile = () => {
                 </div>
                 {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyUser(e); setEdit(false); submitFile(e)}}>Save</Button>}
             </Col>
-            <Col md={7}>
+            <Col md={9}>
                 <div className="scroller">
                     <div className="search-sec-container mt-2">
                         <h1>Quality</h1>
@@ -187,9 +206,30 @@ const PlayerProfile = () => {
                       <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyVideo(e); setVideo(!video)}}>Save</Button></div>}
                     </div>
                 </div>
-            </Col>
-            <Col md={3}>
-                c
+            </Col></>}
+            {viewPlayer && <> <Col md={3}>
+                <div className="ms-3">
+                    <img src={viewPlayer.image} className="profile-img" alt="profile-img" />
+                     <h3>{viewPlayer.name}</h3>
+                    <h3>{viewPlayer.position}</h3>
+                    <h3>{viewPlayer.club?.name}</h3>
+                    <h3>{viewPlayer.birthdate}</h3>
+                     <h3>{viewPlayer.country}</h3>
+                </div>
+               </Col>
+            <Col md={9}>
+                <div className="scroller">
+                    <div className="search-sec-container mt-2">
+                        <h1>Quality</h1>
+                        <Chart pac={viewPlayer.pac} sho={viewPlayer.sho}  pas={viewPlayer.pas} dri={viewPlayer.dri} def={viewPlayer.def} phy={viewPlayer.phy} />
+                    </div>
+                    <div className="search-sec-container mt-2">
+                        <div className="d-flex align-items-center justify-content-between">
+                        <h1>Video</h1>
+                        </div>
+                      <YoutubeEmbed embedId={viewPlayer.video} />
+                    </div>
+                </div>
             </Col></>}
         </Row>
     )

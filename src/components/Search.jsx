@@ -4,7 +4,7 @@ import { useState } from "react"
 import Card from "./Card";
 import ClubCard from "./ClubCard";
 
-const Search = () => {
+const Search = ({compare}) => {
 
     const [birthdate, setBirthdate] = useState("")
     const [position, setPosition] = useState("")
@@ -67,15 +67,16 @@ const Search = () => {
 
     return(
         <div className="mt-5" style={{paddingLeft: "20%", paddingRight: "20%"}}>
-           {!result && role === "player" && <> <div className="d-flex justify-content-center">
+           { !result && <div className="d-flex justify-content-center">
                 <div>
             <h4>Search players and clubs by defining search filters</h4>
             <Row >
-          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
             </div>
-            </div>
+            </div>}
+           {!result && role === "player" && <> 
 
             <Row className="mb-4 mt-5 d-flex">
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
@@ -87,15 +88,7 @@ const Search = () => {
 
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
         </>}
-        {!result && role === "club" && <> <div className="d-flex justify-content-between p-2">
-                <div>
-            <h4>Search players and clubs by defining search filters</h4>
-            <Row>
-          {role === "player" ? <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-dark text-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")}} className="me-2 pointer bg-white" style={{padding: "5px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
-         </Row>
-            </div>
-            </div>
+        {!result && role === "club" && <>
 
             <Row className="m-auto mb-4 mt-5">
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
@@ -108,7 +101,7 @@ const Search = () => {
             {result && role === "player" && fetchPlayerResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
   }
         </Row>
         </div>}
