@@ -5,16 +5,11 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, userlike, userdislike, id, compare, handleClose}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, id, compare, handleClose}) => {
 
 	const dispatch = useDispatch()
 
-	const [like, setLike] = useState(false)
-	const [disLike, setDisLike] = useState(false)
 	const [fan, setFan]= useState(undefined)
-	const [fav, setFav] = useState(false)
-
-	const location = window.location.pathname
 
 	const role = localStorage.getItem("role")
 
@@ -27,9 +22,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
               }
           });
           const data = await response.json();
-          console.log(data)
           setFan(data);
-          
+		  console.log(data)
         } catch (error) {
           console.log(error);
         }
@@ -38,12 +32,40 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 	  useEffect(()=>{fetchData()}, [])
 
 
-	const addFavPlayer = async (e) => {
-		e.preventDefault()
+	const addFavPlayer = async () => {
 		const newUser = { id }
 		try {
 		  if(role==="fan"){
 		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/addPlayer`, {
+			method: "POST",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.ok) {
+			let data = await response.json()
+			fetchData()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }}
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+	  const addLike = async () => {
+		const newUser = { id }
+		try {
+		 
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/addLike`, {
 			method: "POST",
 			body: JSON.stringify(newUser),
 			headers: {
@@ -61,7 +83,121 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			if (response.status === 404) {
 			  alert("page not found")
 			}
+		  }
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+
+	  const addDisLike = async () => {
+		const newUser = { id }
+		try {
+		  
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/addDisLike`, {
+			method: "POST",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.ok) {
+			let data = await response.json()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+	  const removeFavPlayer = async () => {
+		const newUser = { id }
+		try {
+		  if(role==="fan"){
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/fan/removePlayer`, {
+			method: "DELETE",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.ok) {
+			let data = await response.json()
+			fetchData()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
 		  }}
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+	  const removeLike = async () => {
+		const newUser = { id }
+		try {
+		  
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/removeLike`, {
+			method: "DELETE",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.ok) {
+			let data = await response.json()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
+
+	  const removeDisLike = async () => {
+		const newUser = { id }
+		try {
+		 
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/player/removeDisLike`, {
+			method: "DELETE",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.ok) {
+			let data = await response.json()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }
 		} catch (error) {
 		  console.log(error)
 		}
@@ -140,15 +276,9 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				<div className="card-name">
 				<h2 className="mt-2">{name}</h2>
 				<div className="d-flex m-2 justify-content-around">
-				<div>	
-				<i onClick={()=> {if(disLike === false){setLike(!like)}else{setDisLike(false);setLike(!like)} }} className={like ? "bi bi-heart-fill red-like judge" : "bi bi-heart judge"}></i>
-				<span className="ms-2">{userlike}</span>
-				</div>
-				<div>
-				<i onClick={()=> {if(like === false){setDisLike(!disLike)}else{setLike(false);setDisLike(!disLike)}}} className={disLike ? "bi bi-heartbreak-fill red-like judge" : "bi bi-heartbreak judge"}></i>
-				<span className="ms-2">{userdislike}</span>
-				</div>
-				{role === "fan" && fan?.favPlayers.includes(id) ? <i onClick={()=> { }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
+				{player && player?.like.includes(localStorage.getItem("userId")) ? <i onClick={()=> { removeLike()}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={()=> {if(player.dislike.includes(localStorage.getItem("userId"))){removeDisLike(); addLike() }else{addLike()}}} className= "bi bi-heart judge"></i>}
+				{player && player?.dislike.includes(localStorage.getItem("userId")) ? <i onClick={()=> {removeDisLike()}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={()=> {if(player.like.includes(localStorage.getItem("userId"))){removeLike(); addDisLike()}else{addDisLike()}}} className= "bi bi-heartbreak judge"></i>}
+				{role === "fan" && fan && fan.favPlayers.includes(id) ? <i onClick={()=> {removeFavPlayer() }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
 				</div>
 				</div>
 				</div>

@@ -110,7 +110,7 @@ const Search = ({compare, handleClose}) => {
         {result && role === "club" && fetchClubResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}
