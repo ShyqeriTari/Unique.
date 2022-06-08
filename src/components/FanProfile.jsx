@@ -118,7 +118,7 @@ const FanProfile = () => {
             <h1>Fav players</h1>
            <div className="hor-scroller d-flex" >
            {user.favPlayers.map(player => {
-    return  <Card  name={player.name} image={player.image}
+    return  <Card id={player._id}  name={player.name} image={player.image}
     nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      /> 
   })}

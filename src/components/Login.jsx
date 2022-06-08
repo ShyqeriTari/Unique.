@@ -2,26 +2,29 @@ import React, { useState, useEffect } from "react"
 import { Form, Button,  Row, Col } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import "../styles/login.css"
-import logo from "../assets/logo_transparent.png"
 import logoBlack from "../assets/logo-black.png"
-import { useDispatch } from "react-redux"
 
-const Login = () => {
+const Login = ({setRender}) => {
   const [view, setView] = useState(true)
 
   const changeView = () => {
     setView(!view)
   }
 
-  const navigate = useNavigate()
+
+  useEffect(()=>{
+    localStorage.setItem("role", "fan")
+    setRender(false)
+  }, [])
+
   return (
     <div className="welcome">
         <img src={logoBlack} alt="logo_black" width={"100px"}/>
       <h1>Unique.</h1>
       {view ? (
-        <Log registerView={changeView} />
+        <Log setRender={setRender} registerView={changeView} />
       ) : (
-        <Register loginView={changeView} />
+        <Register setRender={setRender} loginView={changeView} />
       )}
     </div>
   )
@@ -29,7 +32,7 @@ const Login = () => {
 
 // Login Component**************
 
-function Log({ registerView }) {
+function Log({ registerView, setRender}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [role, setRole] = useState("fan")
@@ -50,7 +53,10 @@ function Log({ registerView }) {
       if (response.ok) {
         let data = await response.json()
         localStorage.setItem("token", data.accessToken)
+        localStorage.setItem("userId", data.id)
+        console.log(data.id)
         navigate("/search")
+        setRender(true)
       } else {
         alert("registration failed")
         if (response.status === 400) {
@@ -71,6 +77,8 @@ function Log({ registerView }) {
           let data = await response.json()
           localStorage.setItem("token", data.accessToken)
           navigate("/search")
+          setRender(true)
+          localStorage.setItem("userId", data.id)
         } else {
           alert("registration failed")
           if (response.status === 400) {
@@ -90,6 +98,8 @@ function Log({ registerView }) {
           let data = await response.json()
           localStorage.setItem("token", data.accessToken)
           navigate("/search")
+          setRender(true)
+          localStorage.setItem("userId", data.id)
         } else {
           alert("registration failed")
           if (response.status === 400) {
@@ -146,7 +156,7 @@ function Log({ registerView }) {
 
 // Register Component**************
 
-function Register({ loginView }) {
+function Register({ loginView, setRender }) {
   const [name, setName] = useState("")
   const [birthdate, setBirthdate] = useState("")
   const [password, setPassword] = useState("")
@@ -171,7 +181,9 @@ function Register({ loginView }) {
       if (response.ok) {
         let data = await response.json()
         localStorage.setItem("token", data.accessToken)
+        localStorage.setItem("userId", data._id)
         navigate("/search")
+        setRender(true)
       } else {
         alert("registration failed")
         if (response.status === 400) {
@@ -192,6 +204,8 @@ function Register({ loginView }) {
           let data = await response.json()
           localStorage.setItem("token", data.accessToken)
           navigate("/search")
+          setRender(true)
+          localStorage.setItem("userId", data._id)
         } else {
           alert("registration failed")
           if (response.status === 400) {
@@ -211,6 +225,8 @@ function Register({ loginView }) {
           let data = await response.json()
           localStorage.setItem("token", data.accessToken)
           navigate("/search")
+          setRender(true)
+          localStorage.setItem("userId", data._id)
         } else {
           alert("registration failed")
           if (response.status === 400) {

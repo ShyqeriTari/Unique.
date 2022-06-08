@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import "../styles/card.scss"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
@@ -11,11 +11,32 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 
 	const [like, setLike] = useState(false)
 	const [disLike, setDisLike] = useState(false)
+	const [fan, setFan]= useState(undefined)
 	const [fav, setFav] = useState(false)
 
 	const location = window.location.pathname
 
 	const role = localStorage.getItem("role")
+
+	const fetchData = async () => {
+        try {
+           
+          const response = await fetch(process.env.REACT_APP_LOCAL_URL + "/fan/" + localStorage.getItem("userId"), {
+              headers:{
+                  "Authorization": `Bearer ${localStorage.getItem("token")}`
+              }
+          });
+          const data = await response.json();
+          console.log(data)
+          setFan(data);
+          
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+	  useEffect(()=>{fetchData()}, [])
+
 
 	const addFavPlayer = async (e) => {
 		e.preventDefault()
@@ -127,7 +148,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				<i onClick={()=> {if(like === false){setDisLike(!disLike)}else{setLike(false);setDisLike(!disLike)}}} className={disLike ? "bi bi-heartbreak-fill red-like judge" : "bi bi-heartbreak judge"}></i>
 				<span className="ms-2">{userdislike}</span>
 				</div>
-				{role === "fan" && <i onClick={()=> {setFav(!fav); addFavPlayer()}} className={fav ? "bi bi-star-fill yellow-fav judge" : "bi bi-star judge"}></i>}
+				{role === "fan" && fan?.favPlayers.includes(id) ? <i onClick={()=> { }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
 				</div>
 				</div>
 				</div>

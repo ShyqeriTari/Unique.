@@ -73,8 +73,8 @@ const Search = ({compare, handleClose}) => {
                 <div>
             <h4>Search players and clubs by defining search filters</h4>
             <Row >
-          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-2 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className="me-2 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white me-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-1 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white ms-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className=" pointer bg-white ms-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
             </div>
             </div>}

@@ -6,7 +6,6 @@ import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
-import Card from "./Card";
 
 const PlayerCompare = () => {
 
@@ -47,7 +46,6 @@ const PlayerCompare = () => {
            </Col>
            <Col  md={8}>
                    <div className="search-sec-container mt-2">
-                   <h1>Compare</h1>
                <ChartCompare/>
                </div>
            </Col>
