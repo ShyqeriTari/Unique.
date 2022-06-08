@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, id, compare, handleClose}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, id, compare, handleClose, refetch}) => {
 
 	const dispatch = useDispatch()
 
@@ -44,9 +44,9 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
 			fetchData()
+			
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -61,7 +61,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 		}
 	  }
 
-	  const addLike = async () => {
+	  const addLike = async (e) => {
 		const newUser = { id }
 		try {
 		 
@@ -73,8 +73,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -90,7 +90,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 	  }
 
 
-	  const addDisLike = async () => {
+	  const addDisLike = async (e) => {
 		const newUser = { id }
 		try {
 		  
@@ -102,8 +102,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -130,9 +130,9 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
 			fetchData()
+			refetch()
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -147,7 +147,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 		}
 	  }
 
-	  const removeLike = async () => {
+	  const removeLike = async (e) => {
 		const newUser = { id }
 		try {
 		  
@@ -159,8 +159,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -175,7 +175,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 		}
 	  }
 
-	  const removeDisLike = async () => {
+	  const removeDisLike = async (e) => {
 		const newUser = { id }
 		try {
 		 
@@ -187,8 +187,8 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -276,9 +276,9 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				<div className="card-name">
 				<h2 className="mt-2">{name}</h2>
 				<div className="d-flex m-2 justify-content-around">
-				{player && player?.like.includes(localStorage.getItem("userId")) ? <i onClick={()=> { removeLike()}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={()=> {if(player.dislike.includes(localStorage.getItem("userId"))){removeDisLike(); addLike() }else{addLike()}}} className= "bi bi-heart judge"></i>}
-				{player && player?.dislike.includes(localStorage.getItem("userId")) ? <i onClick={()=> {removeDisLike()}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={()=> {if(player.like.includes(localStorage.getItem("userId"))){removeLike(); addDisLike()}else{addDisLike()}}} className= "bi bi-heartbreak judge"></i>}
-				{role === "fan" && fan && fan.favPlayers.includes(id) ? <i onClick={()=> {removeFavPlayer() }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
+				{player && player?.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={(e)=> {if(player.dislike.includes(localStorage.getItem("userId"))){removeDisLike(e); addLike(e); }else{addLike(e)}}} className= "bi bi-heart judge"></i>}
+				{player && player?.dislike.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={(e)=> {if(player.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"></i>}
+				{role === "fan" && fan && fan.favPlayers.includes(id) ? <i onClick={()=> {removeFavPlayer()}} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
 				</div>
 				</div>
 				</div>

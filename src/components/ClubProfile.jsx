@@ -25,7 +25,7 @@ const ClubProfile = () => {
 
   const params = useParams()
 
-  const fetchData = async () => {
+  const fetchData = async (e) => {
     try {
        
       const response = await fetch(process.env.REACT_APP_LOCAL_URL + "/club/me", {
@@ -160,7 +160,7 @@ const ClubProfile = () => {
 			</div>
 		</div> </Col>
             {user.players.map(player => {
-    return <Col> <span className="text-danger pointer">Remove</span> <Card player={player} name={player.name} image={player.image}
+    return <Col> <span className="text-danger pointer">Remove</span> <Card refetch={fetchData} player={player} name={player.name} image={player.image}
     nationality={player.country} club={player.club.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
   })}
@@ -181,7 +181,7 @@ const ClubProfile = () => {
            <h2>Players</h2> 
             <Row className="scroller-club text-center"> 
             {viewClub.players.map(player => {
-    return <Col> <Card player={player} id={player._id} name={player.name} image={player.image}
+    return <Col> <Card refetch={getClub} player={player} id={player._id} name={player.name} image={player.image}
     nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
   })}

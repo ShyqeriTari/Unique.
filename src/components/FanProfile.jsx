@@ -17,7 +17,7 @@ const FanProfile = () => {
     const [country, setCountry] = useState(undefined)
 
 
-    const fetchData = async () => {
+    const fetchData = async (e) => {
         try {
            
           const response = await fetch(process.env.REACT_APP_LOCAL_URL + "/fan/me", {
@@ -118,7 +118,7 @@ const FanProfile = () => {
             <h1>Fav players</h1>
            <div className="hor-scroller d-flex" >
            {user.favPlayers.map(player => {
-    return  <Card id={player._id} player={player}  name={player.name} image={player.image}
+    return  <Card refetch={fetchData} id={player._id} player={player}  name={player.name} image={player.image}
     nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} shot={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      /> 
   })}
@@ -128,7 +128,7 @@ const FanProfile = () => {
             <h1>Fav clubs</h1>
            <div className="hor-scroller d-flex" >
            {user.favClubs.map(club => {
-    return <ClubCard id={club._id} club={club}  name={club.name} image={club.image}
+    return <ClubCard refetch={fetchData} id={club._id} club={club}  name={club.name} image={club.image}
     year={`Founded on ${club.birthdate}`}  city={club.country}
      /> 
   })}

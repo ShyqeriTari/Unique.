@@ -103,14 +103,14 @@ const Search = ({compare, handleClose}) => {
             {result && role === "player" && fetchPlayerResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card refetch={fetchPlayerSearchResult} handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
   }
         </Row>
         </div>}
         {result && role === "club" && fetchClubResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}

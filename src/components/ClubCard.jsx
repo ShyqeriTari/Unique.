@@ -3,7 +3,7 @@ import "../styles/card.scss"
 import { useEffect, useState } from "react"
 
 
-const ClubCard = ({image, club, year, name, city, id}) => {
+const ClubCard = ({image, club, year, name, city, id, refetch}) => {
 
 	const [like, setLike] = useState(false)
 	const [disLike, setDisLike] = useState(false)
@@ -42,8 +42,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
+			fetchData()
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -58,7 +58,7 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 		}
 	  }
 
-	  const addLike = async () => {
+	  const addLike = async (e) => {
 		const newUser = { id }
 		try {
 		 
@@ -70,8 +70,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -87,7 +87,7 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 	  }
 
 
-	  const addDisLike = async () => {
+	  const addDisLike = async (e) => {
 		const newUser = { id }
 		try {
 		  
@@ -99,8 +99,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 200) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -115,7 +115,7 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 		}
 	  }
 
-	  const removeFavClub = async () => {
+	  const removeFavClub = async (e) => {
 		const newUser = { id }
 		try {
 		  if(role==="fan"){
@@ -127,8 +127,9 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
+			refetch(e)
+			fetchData()
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -143,7 +144,7 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 		}
 	  }
 
-	  const removeLike = async () => {
+	  const removeLike = async (e) => {
 		const newUser = { id }
 		try {
 		 
@@ -155,8 +156,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -171,7 +172,7 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 		}
 	  }
 
-	  const removeDisLike = async () => {
+	  const removeDisLike = async (e) => {
 		const newUser = { id }
 		try {
 		  
@@ -183,8 +184,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 			  "Authorization": `Bearer ${localStorage.getItem("token")}`
 			},
 		  })
-		  if (response.ok) {
-			let data = await response.json()
+		  if (response.status === 204) {
+			refetch(e)
 		  } else {
 			alert("registration failed")
 			if (response.status === 400) {
@@ -214,8 +215,8 @@ const ClubCard = ({image, club, year, name, city, id}) => {
 				<div className="card-name">
 				<h2 className="mt-2">{name}</h2>
 				<div className="d-flex m-2 justify-content-around">
-				{club && club.like.includes(localStorage.getItem("userId")) ? <i onClick={()=> { removeLike()}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={()=> {if(club.dislike.includes(localStorage.getItem("userId"))){addLike(); removeDisLike()}else{addLike()} }} className= "bi bi-heart judge"></i>}
-				{club && club.dislike.includes(localStorage.getItem("userId")) ?<i onClick={()=> {removeDisLike()}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={()=> {if(club.like.includes(localStorage.getItem("userId"))){removeLike(); addDisLike()}else{addDisLike()}}} className= "bi bi-heartbreak judge"></i>}
+				{club && club.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={(e)=> {if(club.dislike.includes(localStorage.getItem("userId"))){addLike(e); removeDisLike(e)}else{addLike(e)} }} className= "bi bi-heart judge"></i>}
+				{club && club.dislike.includes(localStorage.getItem("userId")) ?<i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={(e)=> {if(club.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"></i>}
 				{role === "fan" && fan && fan.favClubs.includes(id) ? <i onClick={()=> {removeFavClub() }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavClub()}} className= "bi bi-star judge"></i>}
 				</div>
 				</div>
