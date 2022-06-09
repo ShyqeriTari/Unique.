@@ -5,7 +5,7 @@ import { Chart } from "./Chart"
 import { useState, useEffect } from "react"
 import YoutubeEmbed from "./YoutubeEmbed"
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Search from "./Search"
 
 const PlayerProfile = () => {
@@ -191,7 +191,7 @@ const PlayerProfile = () => {
                     {edit && <input type="text" onChange={(e) => setName(e.target.value)} style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.position}</h3>}
                     {edit && <input type="text" onChange={(e) => setPosition(e.target.value)} style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
-                    {!edit && <h3>{user.club?.name}</h3>}
+                    {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
                     {edit && <div onClick={handleShow} className="pointer"> <span>select club </span> <i  className="bi bi-plus m-auto pointer"/> </div>}
                     {!edit && <h3>{user.birthdate}</h3>}
                     {!edit && <h3>{user.country}</h3>}
@@ -226,8 +226,8 @@ const PlayerProfile = () => {
                 <div className="ms-3">
                     <img src={viewPlayer.image} className="profile-img" alt="profile-img" />
                      <h3>{viewPlayer.name}</h3>
-                    <h3>{viewPlayer.position}</h3>
-                    <h3>{viewPlayer.club?.name}</h3>
+                    <h3>{viewPlayer.position}</h3>{ localStorage.getItem("userId") === viewPlayer.club?._id ?
+                   <Link to={`/me`}> <h3>{viewPlayer.club?.name}</h3></Link>:<Link to={`/club/${viewPlayer.club?._id}`}> <h3>{viewPlayer.club?.name}</h3></Link>}
                     <h3>{viewPlayer.birthdate}</h3>
                      <h3>{viewPlayer.country}</h3>
                 </div>
