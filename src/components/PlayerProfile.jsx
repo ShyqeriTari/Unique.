@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "react-bootstrap"
+import { Row, Col, Button, Modal } from "react-bootstrap"
 import "../styles/playerProfile.css"
 import ProfileDataSection from "./ProfileDataSection"
 import { Chart } from "./Chart"
@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import YoutubeEmbed from "./YoutubeEmbed"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import Search from "./Search"
 
 const PlayerProfile = () => {
 
@@ -33,7 +34,12 @@ const PlayerProfile = () => {
 
     const [position, setPosition] = useState(undefined)
 
+    const [show, setShow] = useState(false);
+
     const params = useParams()
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     
 
     const fetchData = async () => {
@@ -186,7 +192,7 @@ const PlayerProfile = () => {
                     {!edit && <h3>{user.position}</h3>}
                     {edit && <input type="text" onChange={(e) => setPosition(e.target.value)} style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
                     {!edit && <h3>{user.club?.name}</h3>}
-                    {edit && <input type="text"  style={{ color: "black" }} placeholder="Insert club here..." className="me-2 mt-2" />}
+                    {edit && <div onClick={handleShow} className="pointer"> <span>select club </span> <i  className="bi bi-plus m-auto pointer"/> </div>}
                     {!edit && <h3>{user.birthdate}</h3>}
                     {!edit && <h3>{user.country}</h3>}
                     {edit && <><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
@@ -240,6 +246,19 @@ const PlayerProfile = () => {
                     </div>
                 </div>
             </Col></>}
+            <Modal
+        size="xl"
+        show={show}
+        onHide={() => handleClose()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Select your club
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body><Search refetchPlayer={fetchData} handleClose={handleClose} compare={"player"}/></Modal.Body>
+      </Modal>
         </Row>
     )
 }

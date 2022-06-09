@@ -4,7 +4,7 @@ import { useState } from "react"
 import Card from "./Card";
 import ClubCard from "./ClubCard";
 
-const Search = ({compare, handleClose, refetchAdd}) => {
+const Search = ({compare, handleClose, refetchAdd, refetchPlayer}) => {
 
     const [birthdate, setBirthdate] = useState("")
     const [position, setPosition] = useState("")
@@ -78,7 +78,7 @@ const Search = ({compare, handleClose, refetchAdd}) => {
          </Row>
             </div>
             </div>}
-           {!result && role === "player" && <> 
+           {!result && role === "player" && compare !== "player" && compare !== "fan" && <> 
 
             <Row className="mb-4 mt-5 d-flex">
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
@@ -90,7 +90,7 @@ const Search = ({compare, handleClose, refetchAdd}) => {
 
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
         </>}
-        {!result && role === "club" && <>
+        {!result && (role === "club" || compare === "player" || compare === "fan") && <>
 
             <Row className="m-auto mb-4 mt-5">
                 <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
@@ -107,10 +107,10 @@ const Search = ({compare, handleClose, refetchAdd}) => {
   }
         </Row>
         </div>}
-        {result && role === "club" && fetchClubResult && <div className="text-center">
+        {result && (role === "club" || compare === "player" || compare === "fan") && fetchClubResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}
