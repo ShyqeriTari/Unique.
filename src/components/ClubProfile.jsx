@@ -3,6 +3,7 @@ import { Row, Col, Button, Modal } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom";
 import Card from "./Card";
 import axios from "axios";
+import Search from "./Search";
 
 const ClubProfile = () => {
 
@@ -41,6 +42,34 @@ const ClubProfile = () => {
       console.log(error);
     }
   };
+
+  const removePlayerFromClub = async (id) => {
+		const newUser = { id }
+		try {
+		  
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/club/removePlayer`, {
+			method: "DELETE",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.status === 204) {
+			fetchData()
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
 
   const getClub = async () => {
     try {
@@ -160,7 +189,7 @@ const ClubProfile = () => {
 			</div>
 		</div> </Col>
             {user.players.map(player => {
-    return <Col> <span className="text-danger pointer">Remove</span> <Card refetch={fetchData} player={player} name={player.name} image={player.image}
+    return <Col> <span onClick={()=> {removePlayerFromClub(player._id)}} className="text-danger pointer">Remove</span> <Card id={player._id} refetch={fetchData} player={player} name={player.name} image={player.image}
     nationality={player.country} club={player.club.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
   })}
@@ -190,21 +219,18 @@ const ClubProfile = () => {
   </div>
            </Col>  </>}
        </Row>
-       <Modal show={show} onHide={handleClose}>
-        <Modal.Header >
-          <Modal.Title>Modal heading</Modal.Title>
+       <Modal
+        size="xl"
+        show={show}
+        onHide={() => handleClose()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Large Modal
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-            <Row>
-                <Col md={6}><Link className="link" to={"/search-club-player"}> Find</Link></Col>
-                <Col md={6}>  <Link className="link" to={"/player-create"}> Create</Link></Col>
-            </Row>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
+        <Modal.Body><Search refetchAdd={fetchData} handleClose={handleClose} compare={"club"}/></Modal.Body>
       </Modal></>
     )
 }

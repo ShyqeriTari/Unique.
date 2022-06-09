@@ -27,7 +27,7 @@ const ClubCard = ({image, club, year, name, city, id, refetch}) => {
         }
       };
 
-	  useEffect(()=>{fetchData()}, [])
+	  useEffect(()=>{if(localStorage.getItem("role") === "fan"){fetchData()}}, [])
 
 	const addFavClub = async () => {
 		
@@ -217,7 +217,7 @@ const ClubCard = ({image, club, year, name, city, id, refetch}) => {
 				<div className="d-flex m-2 justify-content-around">
 				{club && club.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={(e)=> {if(club.dislike.includes(localStorage.getItem("userId"))){addLike(e); removeDisLike(e)}else{addLike(e)} }} className= "bi bi-heart judge"></i>}
 				{club && club.dislike.includes(localStorage.getItem("userId")) ?<i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={(e)=> {if(club.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"></i>}
-				{role === "fan" && fan && fan.favClubs.includes(id) ? <i onClick={()=> {removeFavClub() }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavClub()}} className= "bi bi-star judge"></i>}
+				{role === "fan" ? fan && fan.favClubs.includes(id) ? <i onClick={()=> {removeFavClub() }} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavClub()}} className= "bi bi-star judge"></i>: <></>}
 				</div>
 				</div>
 				</div>

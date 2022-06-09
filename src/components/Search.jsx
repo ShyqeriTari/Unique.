@@ -4,7 +4,7 @@ import { useState } from "react"
 import Card from "./Card";
 import ClubCard from "./ClubCard";
 
-const Search = ({compare, handleClose}) => {
+const Search = ({compare, handleClose, refetchAdd}) => {
 
     const [birthdate, setBirthdate] = useState("")
     const [position, setPosition] = useState("")
@@ -69,7 +69,7 @@ const Search = ({compare, handleClose}) => {
 
     return(
         <div className="mt-5" style={{paddingLeft: "20%", paddingRight: "20%"}}>
-           { !result && location !== "/player-compare" && <div className="d-flex justify-content-center">
+           { !result && location !== "/player-compare" && location !== "/me" && <div className="d-flex justify-content-center">
                 <div>
             <h4>Search players and clubs by defining search filters</h4>
             <Row >
@@ -103,7 +103,7 @@ const Search = ({compare, handleClose}) => {
             {result && role === "player" && fetchPlayerResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card refetch={fetchPlayerSearchResult} handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
+           {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card refetchAdd={refetchAdd} refetch={fetchPlayerSearchResult} handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
   }
         </Row>
         </div>}

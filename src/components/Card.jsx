@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { setFirstPlayerAction, setSecondPlayerAction } from "../redux/actions"
 
 
-const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, id, compare, handleClose, refetch}) => {
+const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality, name, player, id, compare, handleClose, refetch, refetchAdd}) => {
 
 	const dispatch = useDispatch()
 
@@ -29,7 +29,35 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
         }
       };
 
-	  useEffect(()=>{fetchData()}, [])
+	  useEffect(()=>{if(localStorage.getItem("role") === "fan"){fetchData()}}, [])
+
+	  const addPlayerToClub = async (e) => {
+		const newUser = { id }
+		try {
+		 
+		  let response = await fetch(`${process.env.REACT_APP_LOCAL_URL}/club/addPlayer`, {
+			method: "POST",
+			body: JSON.stringify(newUser),
+			headers: {
+			  "Content-type": "application/json",
+			  "Authorization": `Bearer ${localStorage.getItem("token")}`
+			},
+		  })
+		  if (response.status === 200) {
+			refetchAdd(e)
+		  } else {
+			alert("registration failed")
+			if (response.status === 400) {
+			  alert("bad request")
+			}
+			if (response.status === 404) {
+			  alert("page not found")
+			}
+		  }
+		} catch (error) {
+		  console.log(error)
+		}
+	  }
 
 
 	const addFavPlayer = async () => {
@@ -117,6 +145,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 		  console.log(error)
 		}
 	  }
+
 
 	  const removeFavPlayer = async () => {
 		const newUser = { id }
@@ -249,7 +278,28 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 					</div>
 					<h5 className="details mt-3">{nationality}</h5>
 				</div>
-				 : <Link className="link" to={`/player/${id}`}>
+				 : compare=== "club" ? 
+				 <div onClick={(e)=> {addPlayerToClub(e); handleClose()}} className="face face1">
+					 <h4 className="details">{club}</h4>
+					 <h6 className="details">{position}</h6>
+					 <div className="stats content d-flex justify-content-center">
+						 <div className="details me-3">
+							 <div>
+								 <li ><span className="me-2">{pac}</span><span>pac</span></li>
+								 <li ><span className="me-2">{sho}</span><span>sho</span></li>
+								 <li ><span className="me-2">{pas}</span><span>pas</span></li>
+							 </div>
+						 </div>
+						 <div className="details">
+							 <div>
+								 <li ><span className="me-2">{dri}</span><span>dri</span></li>
+								 <li ><span className="me-2">{def}</span><span>def</span></li>
+								 <li ><span className="me-2">{phy}</span><span>phy</span></li>
+							 </div>
+						 </div>
+					 </div>
+					 <h5 className="details mt-3">{nationality}</h5>
+				 </div>:<Link className="link" to={`/player/${id}`}>
 				<div className="face face1">
 					<h4 className="details">{club}</h4>
 					<h6 className="details">{position}</h6>
@@ -278,7 +328,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				<div className="d-flex m-2 justify-content-around">
 				{player && player?.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"></i> : <i onClick={(e)=> {if(player.dislike.includes(localStorage.getItem("userId"))){removeDisLike(e); addLike(e); }else{addLike(e)}}} className= "bi bi-heart judge"></i>}
 				{player && player?.dislike.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"></i>:<i onClick={(e)=> {if(player.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"></i>}
-				{role === "fan" && fan && fan.favPlayers.includes(id) ? <i onClick={()=> {removeFavPlayer()}} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>}
+				{role === "fan" ? fan && fan.favPlayers.includes(id) ? <i onClick={()=> {removeFavPlayer()}} className="bi bi-star-fill yellow-fav judge" ></i> : <i onClick={()=> { addFavPlayer()}} className= "bi bi-star judge"></i>: <></>}
 				</div>
 				</div>
 				</div>
