@@ -4,7 +4,7 @@ import { useState } from "react"
 import Card from "./Card";
 import ClubCard from "./ClubCard";
 
-const Search = ({compare, handleClose, refetchAdd, refetchPlayer}) => {
+const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) => {
 
     const [birthdate, setBirthdate] = useState("")
     const [position, setPosition] = useState("")
@@ -110,7 +110,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer}) => {
         {result && (role === "club" || compare === "player" || compare === "fan") && fetchClubResult && <div className="text-center">
             <h1 className="mb-5">Result</h1>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard refetchFan={refetchFan} handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}

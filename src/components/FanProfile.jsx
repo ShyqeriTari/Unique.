@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { Row, Col, Button } from "react-bootstrap"
+import { Row, Col, Button, Modal } from "react-bootstrap"
 import "../styles/playerProfile.css"
 import Card from "./Card"
 import ClubCard from "./ClubCard"
 import axios from "axios"
+import Search from "./Search"
 
 const FanProfile = () => {
 
@@ -15,6 +16,11 @@ const FanProfile = () => {
     const [club, setClub] = useState(undefined)
 
     const [country, setCountry] = useState(undefined)
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     const fetchData = async (e) => {
@@ -108,7 +114,7 @@ const FanProfile = () => {
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setName(e.target.value)} placeholder="Insert name here..." className="me-2 mt-2" />}
                 {!edit && <h3>{user.club?.name}</h3>}
                 {!edit && <h3>{user.country}</h3>}
-                {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setClub(e.target.value)} placeholder="Insert club here..." className="me-2 mt-2" />}
+                {edit && <div onClick={handleShow} className="pointer"> <span>select club </span> <i  className="bi bi-plus m-auto pointer"/> </div>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2 mt-2" />}
                </div>
                {edit&&<Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
@@ -135,6 +141,19 @@ const FanProfile = () => {
             </div>
         </div>
            </Col> </>}
+           <Modal
+        size="xl"
+        show={show}
+        onHide={() => handleClose()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Select your club
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body><Search refetchFan={fetchData} handleClose={handleClose} compare={"fan"}/></Modal.Body>
+      </Modal>
        </Row>
     )
 }
