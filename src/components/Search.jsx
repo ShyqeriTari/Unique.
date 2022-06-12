@@ -36,6 +36,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
     const fetchPlayerSearchResult = async (e) => {
         e.preventDefault()
             try {
+                if(names !== "" || country !== "" || birthdate !== "" || position !== "" ){
               const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player?name=/${names}/i&country=/${country}/i&birthdate=/${birthdate}/i&position=/${position}/i`, {
                   headers:{
                       "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -44,6 +45,16 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
               const data = await response.json();
               console.log(data)
               setFetchPlayerResult(data);
+            } else{
+                const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player/all`, {
+                    headers:{
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                const data = await response.json();
+                console.log(data)
+                setFetchPlayerResult(data);
+            }
               
             } catch (error) {
               console.log(error);
@@ -53,6 +64,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
     const fetchClubSearchResult = async (e) => {
         e.preventDefault()
             try {
+                if(names !== "" || country !== "" || birthdate !== "" || position !== "" ){
               const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/club?name=/${names}/i&country=/${country}/i`, {
                   headers:{
                       "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -60,7 +72,16 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
               });
               const data = await response.json();
               console.log(data)
-              setFetchClubResult(data);
+              setFetchClubResult(data);}else{
+                const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/club/all`, {
+                    headers:{
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                const data = await response.json();
+                console.log(data)
+                setFetchClubResult(data);
+              }
               
             } catch (error) {
               console.log(error);
