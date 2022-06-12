@@ -30,7 +30,7 @@ return(
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {
-        label: player1.name,
+        label: player1.name === undefined ? "player one" : player1.name,
         data: [ player1.sho, player1.pas, player1.dri, player1.def, player1.phy, player1.pac],
         fill:true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -38,7 +38,7 @@ return(
         borderWidth: 1,
       },
       {
-        label: player2.name,
+        label: player1.name === undefined ? "player two" : player2.name,
         data: [ player2.sho, player2.pas, player2.dri, player2.def, player2.phy, player2.pac],
         fill:true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
