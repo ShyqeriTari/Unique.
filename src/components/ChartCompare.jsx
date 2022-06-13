@@ -26,7 +26,7 @@ export const ChartCompare = () => {
     const player2 = useSelector((state)=> state.secondPlayer)
 
 return(
-  <Radar style={{width:"70%", height:"80%", margin:"auto"}} data={{
+  <Radar data={{
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {

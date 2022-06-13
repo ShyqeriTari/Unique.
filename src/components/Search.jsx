@@ -89,7 +89,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
     }
 
     return(
-        <div className="mt-5" style={{paddingLeft: "10%", paddingRight: "10%"}}>
+        <div className="mt-5 padding-body" >
            { !result && location !== "/player-compare" && location !== "/me" && <div className="d-flex justify-content-center">
                 <div>
             <h4>Search players and clubs by defining search filters</h4>

@@ -75,6 +75,79 @@
   width: "50px";
 }
 
-.compare-profile{
-  min-height: "450px"
+.chart-container{
+  max-width: 75%;
+}
+
+.search-compare-button{
+  width: 50%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 1150px){
+  .chart-container{
+    max-width: 90%;
+  }
+
+}
+
+@media only screen and (max-width: 767px){
+  .chart-container{
+    max-width: 85%;
+  }
+  .search-compare-button{
+    width: 50%;
+    margin: 0px;
+  }
+
+  .add-compare{
+   width: 50% !important;
+   height: 250px !important;
+  }
+
+  .sm-screen-hide{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .sm-screen-show{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .chart-container{
+    max-width: 100%;
+  }
+  .search-compare-button{
+    width: 50%;
+    margin: 0px;
+  }
+
+  .add-compare{
+   width: 50% !important;
+   height: 150px !important;
+  }
+
+  .sm-screen-hide{
+    display: none;
+  }
+}
+
+.padding-body{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.padding-body2{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.compare-infos{
+  min-height: 250px;
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

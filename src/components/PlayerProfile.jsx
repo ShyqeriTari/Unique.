@@ -1,4 +1,4 @@
-import { Row, Col, Button, Modal } from "react-bootstrap"
+import { Row, Col, Button, Modal, Dropdown, DropdownButton } from "react-bootstrap"
 import "../styles/playerProfile.css"
 import ProfileDataSection from "./ProfileDataSection"
 import { Chart } from "./Chart"
@@ -180,40 +180,52 @@ const PlayerProfile = () => {
       };
 
     return (
+      <div className="mt-3 padding-body" >
         <Row className="g-0">
            {user && <> <Col md={3}>
-                <div className="ms-3">
+                <div className="d-flex flex-column align-items-center">
                     <img src={user.image} className="profile-img" alt="profile-img" />
                     <i onClick={() => setEdit(!edit)} className="bi bi-three-dots pointer" />
                     {edit && <input className="form-control form-control-md mt-2" onChange={(e) => {uploadImg(e)}} id="formFileLg" type="file" />}
-                    {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
-                    {!edit && <h3>{user.name}</h3>}
+                    {edit && <Button className="m-auto mt-2 w-50 bg-success mb-2" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
+                    {!edit && <h4>{user.name}</h4>}
                     {edit && <input type="text" onChange={(e) => setName(e.target.value)} style={{ color: "black" }} placeholder="Insert name here..." className="me-2 mt-2" />}
-                    {!edit && <h3>{user.position}</h3>}
-                    {edit && <input type="text" onChange={(e) => setPosition(e.target.value)} style={{ color: "black" }} placeholder="Insert position here..." className="me-2 mt-2" />}
+                    {!edit && <h4>{user.position}</h4>}
+                    {edit && <DropdownButton
+          variant="outline-dark"
+          title="select role"
+          id="input-group-dropdown-1"
+
+          className="mt-2"
+        >
+          <Dropdown.Item  onClick={(e) => {setPosition(e.target.value); console.log(e.target.value)}}>Action</Dropdown.Item>
+          
+        </DropdownButton>}
                     {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
-                    {edit && <div onClick={handleShow} className="pointer"> <span>select club </span> <i  className="bi bi-plus m-auto pointer"/> </div>}
-                    {!edit && <h3>{user.birthdate}</h3>}
-                    {!edit && <h3>{user.country}</h3>}
-                    {edit && <><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
+                    {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 p-1 mb-1 d-flex align-items-center"> <span className="text-white">select club </span> <i  className="bi bi-plus m-auto pointer text-white"/> </div>}
+                    {!edit && <h4>{user.birthdate}</h4>}
+                    {!edit && <h4>{user.country}</h4>}
+                    {edit && <div><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
                         <li ><input type="number" onChange={(e) => setSho(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
                         <li ><input type="number" onChange={(e) => setPas(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li>
                         <li ><input type="number" onChange={(e) => setDri(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
                         <li ><input type="number" onChange={(e) => setDef(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>def</span></li>
-                        <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></>}
+                        <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></div>}
 
                 </div>
-                {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyUser(e); setEdit(false); submitFile(e)}}>Save</Button>}
+                {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {modifyUser(e); setEdit(false); submitFile(e)}}>Save</Button>}
             </Col>
             <Col md={9}>
                 <div className="scroller">
-                    <div className="search-sec-container mt-2">
-                        <h1>Quality</h1>
-                        <Chart pac={user.pac} sho={user.sho}  pas={user.pas} dri={user.dri} def={user.def} phy={user.phy} />
+                    <div className="search-sec-container">
+                        <h2>Quality</h2>
+                        <div className="mt-2 m-auto chart-container" >
+                        <Chart name={user.name} pac={user.pac} sho={user.sho}  pas={user.pas} dri={user.dri} def={user.def} phy={user.phy} />
+                        </div>
                     </div>
                     <div className="search-sec-container mt-2">
                         <div className="d-flex align-items-center justify-content-between">
-                        <h1>Video</h1>
+                        <h2>Video</h2>
                         <i onClick={() => setVideo(!video)} className="bi bi-three-dots pointer" />
                         </div>
                       {!video && <YoutubeEmbed embedId={user.video} />}
@@ -223,24 +235,26 @@ const PlayerProfile = () => {
                 </div>
             </Col></>}
             {viewPlayer && <> <Col md={3}>
-                <div className="ms-3">
+                <div className="d-flex flex-column align-items-center">
                     <img src={viewPlayer.image} className="profile-img" alt="profile-img" />
-                     <h3>{viewPlayer.name}</h3>
-                    <h3>{viewPlayer.position}</h3>{ localStorage.getItem("userId") === viewPlayer.club?._id ?
+                     <h4>{viewPlayer.name}</h4>
+                    <h4>{viewPlayer.position}</h4>{ localStorage.getItem("userId") === viewPlayer.club?._id ?
                    <Link to={`/me`}> <h3>{viewPlayer.club?.name}</h3></Link>:<Link to={`/club/${viewPlayer.club?._id}`}> <h3>{viewPlayer.club?.name}</h3></Link>}
-                    <h3>{viewPlayer.birthdate}</h3>
-                     <h3>{viewPlayer.country}</h3>
+                    <h4>{viewPlayer.birthdate}</h4>
+                     <h4>{viewPlayer.country}</h4>
                 </div>
                </Col>
             <Col md={9}>
                 <div className="scroller">
-                    <div className="search-sec-container mt-2">
-                        <h1>Quality</h1>
-                        <Chart pac={viewPlayer.pac} sho={viewPlayer.sho}  pas={viewPlayer.pas} dri={viewPlayer.dri} def={viewPlayer.def} phy={viewPlayer.phy} />
+                    <div className="search-sec-container ">
+                        <h2>Quality</h2>
+                        <div className="mt-2 m-auto chart-container" >
+                        <Chart name={viewPlayer.name} pac={viewPlayer.pac} sho={viewPlayer.sho}  pas={viewPlayer.pas} dri={viewPlayer.dri} def={viewPlayer.def} phy={viewPlayer.phy} />
+                        </div>
                     </div>
                     <div className="search-sec-container mt-2">
                         <div className="d-flex align-items-center justify-content-between">
-                        <h1>Video</h1>
+                        <h2>Video</h2>
                         </div>
                       <YoutubeEmbed embedId={viewPlayer.video} />
                     </div>
@@ -260,6 +274,7 @@ const PlayerProfile = () => {
         <Modal.Body><Search refetchPlayer={fetchData} handleClose={handleClose} compare={"player"}/></Modal.Body>
       </Modal>
         </Row>
+        </div>
     )
 }
 

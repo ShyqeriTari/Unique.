@@ -19,11 +19,11 @@ import {
   );
 
 export const Chart = ({name, sho, pas, dri, def, phy, pac}) => (
-  <Radar style={{width:"70%", height:"80%", margin:"auto"}} data={{
+  <Radar data={{
     labels: [ 'SHO', 'PAS', 'DRI', 'DEF', 'PHY', 'PAC'],
     datasets: [
       {
-        label: name,
+        label: name === undefined ? "player name" : name,
         data: [ sho, pas, dri, def, phy, pac],
         fill:true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
