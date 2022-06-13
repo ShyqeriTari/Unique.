@@ -32,7 +32,7 @@ const PlayerCompare = () => {
 		{!player1.name &&	<div className="card">
             <i className="bi bi-plus text-white m-auto"/>
 			</div>}</div>
-      {player1.name && <div className="ms-3">
+      {player1.name && <div className="ms-3 compare-profile">
                 <img src={player1.image} className="profile-img" alt="profile-img" />
                <Link to={`/player/${player1._id}`}><h3>{player1.name}</h3></Link>
                  <h3>{player1.position}</h3>
@@ -54,7 +54,7 @@ const PlayerCompare = () => {
            {!player2.name &&	<div className="card">
             <i className="bi bi-plus text-white m-auto"/>
 			</div>}</div>
-      {player2.name && <> <div className="ms-3">
+      {player2.name && <> <div className="ms-3 compare-profile">
                 <img src={player2.image} className="profile-img" alt="profile-img" />
                 <Link to={`/player/${player2._id}`}><h3>{player2.name}</h3></Link>
                  <h3>{player2.position}</h3>

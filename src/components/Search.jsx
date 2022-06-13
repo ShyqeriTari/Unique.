@@ -89,13 +89,13 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
     }
 
     return(
-        <div className="mt-5" style={{paddingLeft: "20%", paddingRight: "20%"}}>
+        <div className="mt-5" style={{paddingLeft: "10%", paddingRight: "10%"}}>
            { !result && location !== "/player-compare" && location !== "/me" && <div className="d-flex justify-content-center">
                 <div>
             <h4>Search players and clubs by defining search filters</h4>
-            <Row >
-          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white me-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className="me-1 pointer bg-white" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
-          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white ms-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className=" pointer bg-white ms-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
+            <Row>
+          {role === "player" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("player")}} className="pointer bg-dark text-white mb-1 me-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col> : <Col onClick={(e) => {setRole("player")}} className=" pointer bg-white me-1 mb-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>player</Col>}
+          {role === "club" ? <Col sm={6} md={6} lg={6} onClick={(e) => {setRole("club")}} className="pointer bg-dark text-white mb-1 " style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col> : <Col onClick={(e) => {setRole("club")  }} className=" pointer bg-white mb-1" style={{padding: "10px", border:"1px solid black", borderRadius: "5px"}}>club</Col>}
          </Row>
             </div>
             </div>}
@@ -122,14 +122,14 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchClubSearchResult(e)} }>Search</Button>
         </>}
             {result && role === "player" && fetchPlayerResult && <div className="text-center">
-            <h1 className="mb-5">Result</h1>
+            <h3 className="mb-5" style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid"}}>Players Result</h3>
         <Row>
            {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card refetchAdd={refetchAdd} refetch={fetchPlayerSearchResult} handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
   }
         </Row>
         </div>}
         {result && (role === "club" || compare === "player" || compare === "fan") && fetchClubResult && <div className="text-center">
-            <h1 className="mb-5">Result</h1>
+            <h3 className="mb-5" style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid"}}>Clubs Result</h3>
         <Row>
            {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard refetchFan={refetchFan} handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
