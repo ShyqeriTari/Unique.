@@ -217,15 +217,15 @@ const PlayerProfile = () => {
       
       </DropdownButton>}
               {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
-           {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 p-1 mb-1 d-flex align-items-center"> <span className="text-white">select club </span> <i  className="bi bi-plus m-auto pointer text-white"/> </div>}
+           {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 ps-2 mb-1 d-flex align-items-center"> <span className="text-white me-2">select club </span> <i style={{fontSize: "25px"}} className="bi bi-binoculars m-auto pointer text-white me-1"/> </div>}
                 {!edit && <h4>{user.birthdate}</h4>}
                     {!edit && <h4>{user.country}</h4>}
-                    {edit && <div><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
+                    {edit && <Row className="mt-2"><Col><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
                         <li ><input type="number" onChange={(e) => setSho(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
-                        <li ><input type="number" onChange={(e) => setPas(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li>
-                        <li ><input type="number" onChange={(e) => setDri(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
+                        <li ><input type="number" onChange={(e) => setPas(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pas</span></li></Col>
+                        <Col><li ><input type="number" onChange={(e) => setDri(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>dri</span></li>
                         <li ><input type="number" onChange={(e) => setDef(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>def</span></li>
-                        <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></div>}
+                        <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></Col></Row>}
 
                 </div>
                 {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {modifyUser(e); setEdit(false)}}>Save</Button>}
