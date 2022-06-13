@@ -193,17 +193,32 @@ const PlayerProfile = () => {
                     {!edit && <h4>{user.position}</h4>}
                     {edit && <DropdownButton
           variant="outline-dark"
-          title="select role"
+          title={position ? position : "select role"}
           id="input-group-dropdown-1"
 
           className="mt-2"
         >
-          <Dropdown.Item  onClick={(e) => {setPosition(e.target.value); console.log(e.target.value)}}>Action</Dropdown.Item>
-          
-        </DropdownButton>}
-                    {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
-                    {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 p-1 mb-1 d-flex align-items-center"> <span className="text-white">select club </span> <i  className="bi bi-plus m-auto pointer text-white"/> </div>}
-                    {!edit && <h4>{user.birthdate}</h4>}
+          <Dropdown.Item  onClick={(e) => {setPosition("GK")}}>GK</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("LWB")}}>LWB</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("LB")}}>LB</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("CB")}}>CB</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("RB")}}>RB</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("RWB")}}>RWB</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("LM")}}>LM</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("CM")}}>CM</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("CDM")}}>CDM</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("CAM")}}>CAM</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("RM")}}>RM</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("RW")}}>RW</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("LF")}}>LF</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("RF")}}>RF</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("ST")}}>ST</Dropdown.Item>
+          <Dropdown.Item  onClick={(e) => {setPosition("CF")}}>CF</Dropdown.Item>
+      
+      </DropdownButton>}
+              {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
+           {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 p-1 mb-1 d-flex align-items-center"> <span className="text-white">select club </span> <i  className="bi bi-plus m-auto pointer text-white"/> </div>}
+                {!edit && <h4>{user.birthdate}</h4>}
                     {!edit && <h4>{user.country}</h4>}
                     {edit && <div><li ><input type="number" onChange={(e) => setPac(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>pac</span></li>
                         <li ><input type="number" onChange={(e) => setSho(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>sho</span></li>
@@ -213,7 +228,7 @@ const PlayerProfile = () => {
                         <li ><input type="number" onChange={(e) => setPhy(e.target.value)} style={{ color: "black", width: "50px" }} className="me-2" /><span>phy</span></li></div>}
 
                 </div>
-                {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {modifyUser(e); setEdit(false); submitFile(e)}}>Save</Button>}
+                {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {modifyUser(e); setEdit(false)}}>Save</Button>}
             </Col>
             <Col md={9}>
                 <div className="scroller">
