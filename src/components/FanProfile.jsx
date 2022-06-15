@@ -103,25 +103,26 @@ const FanProfile = () => {
       }
 
     return(
+      <div className="padding-body">
        <Row className="g-0">
           {user && <><Col md={2}>
-               <div className="ms-3">
+               <div className="d-flex flex-column align-items-center">
                 <img src={user.image} className="profile-img" alt="profile-img" />
                 <i onClick={()=> setEdit(!edit)} className="bi bi-three-dots pointer"/>
                {edit && <input className="form-control form-control-md mt-2" onChange={(e)=> {uploadImg(e)}} id="formFileLg" type="file" />}
-               {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
+               {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
                 {!edit && <h3>{user.name}</h3>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setName(e.target.value)} placeholder="Insert name here..." className="me-2 mt-2" />}
                 {!edit && <h3>{user.club?.name}</h3>}
                 {!edit && <h3>{user.country}</h3>}
-                {edit && <div onClick={handleShow} className="pointer"> <span>select club </span> <i  className="bi bi-plus m-auto pointer"/> </div>}
-                {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2 mt-2" />}
+                {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 ps-2 mb-1 d-flex align-items-center"> <span className="text-white me-2">select club </span> <i style={{fontSize: "25px"}} className="bi bi-binoculars m-auto pointer text-white me-1"/> </div>}
+                {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2" />}
                </div>
-               {edit&&<Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
+               {edit&&<Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
            </Col> 
            <Col  md={9}>
-           <div className="fan-sec-container mb-2 mt-2" >
-            <h1>Fav players</h1>
+           <div className=" mb-2 mt-4" >
+            <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Fav players</h2>
            <div className="hor-scroller d-flex" >
            {user.favPlayers.map(player => {
     return  <Card refetch={fetchData} id={player._id} player={player}  name={player.name} image={player.image}
@@ -130,8 +131,8 @@ const FanProfile = () => {
   })}
             </div>
         </div>
-        <div className="fan-sec-container mb-2 mt-2">
-            <h1>Fav clubs</h1>
+        <div className="mb-2 mt-4">
+            <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Fav clubs</h2>
            <div className="hor-scroller d-flex" >
            {user.favClubs.map(club => {
     return <ClubCard refetch={fetchData} id={club._id} club={club}  name={club.name} image={club.image}
@@ -155,6 +156,7 @@ const FanProfile = () => {
         <Modal.Body><Search refetchFan={fetchData} handleClose={handleClose} compare={"fan"}/></Modal.Body>
       </Modal>
        </Row>
+       </div>
     )
 }
 
