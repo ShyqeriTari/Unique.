@@ -12,4 +12,5 @@ const SearchSection = ({title, icon, type, min, max, text, setValue, size}) => {
     )
 }
 
+
 export default SearchSection
