@@ -102,11 +102,11 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
            {!result && role === "player" && compare !== "player" && compare !== "fan" && <> 
 
             <Row className="mb-4 mt-5 d-flex">
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Position"} icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
+                <Col sm={compare === "club" ? 12 : 6} md={compare === "club" ? 12 : 6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
+                <Col sm={compare === "club" ? 12 : 6} md={compare === "club" ? 12 : 6} lg={6}><SearchSection title={"Position"} icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
 
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Birth year"} size={"140%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
+                <Col sm={compare === "club" ? 12 : 6} md={compare === "club" ? 12 : 6} lg={6}><SearchSection title={"Birth year"} size={"140%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
+                <Col sm={compare === "club" ? 12 : 6} md={compare === "club" ? 12 : 6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
@@ -114,9 +114,9 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
         {!result && (role === "club" || compare === "player" || compare === "fan") && <>
 
             <Row className="m-auto mb-4 mt-5">
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
+                <Col sm={compare === "player" || compare === "fan" ? 12 : 6} md={compare === "player" || compare === "fan" ? 12 : 6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
 
-                <Col sm={6} md={6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
+                <Col sm={compare === "player" || compare === "fan" ? 12 : 6} md={compare === "player" || compare === "fan" ? 12 : 6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchClubSearchResult(e)} }>Search</Button>
