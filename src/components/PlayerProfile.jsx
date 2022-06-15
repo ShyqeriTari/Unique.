@@ -231,20 +231,17 @@ const PlayerProfile = () => {
                 {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {modifyUser(e); setEdit(false)}}>Save</Button>}
             </Col>
             <Col md={9}>
-                <div className="scroller">
-                    <div className="search-sec-container">
-                        <h2>Quality</h2>
+                <div className="scroller mt-4">
+                    <div className="search-sec-container ">
+                        <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Quality</h2>
                         <div className="mt-2 m-auto chart-container" >
                         <Chart name={user.name} pac={user.pac} sho={user.sho}  pas={user.pas} dri={user.dri} def={user.def} phy={user.phy} />
                         </div>
                     </div>
                     <div className="search-sec-container mt-2">
-                        <div className="d-flex align-items-center justify-content-between">
-                        <h2>Video</h2>
-                        <i onClick={() => setVideo(!video)} className="bi bi-three-dots pointer" />
-                        </div>
+                        <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Video <i style={{fontSize: "25px"}} onClick={() => setVideo(!video)} className="bi bi-three-dots pointer" /></h2>
                       {!video && <YoutubeEmbed embedId={user.video} />}
-                      {video &&<div className="d-flex"> <input type="text" placeholder="insert video id" onChange={(e) => setVideo(e.target.value)} style={{ color: "black", width: "30%", }} className="ms-3" />
+                      {video &&<div className="d-flex"> <input type="text" placeholder="insert youtube video id" onChange={(e) => setVideo(e.target.value)} style={{ color: "black", width: "30%", }} className="ms-3" />
                       <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {modifyVideo(e); setVideo(!video)}}>Save</Button></div>}
                     </div>
                 </div>
