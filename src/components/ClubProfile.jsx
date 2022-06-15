@@ -165,25 +165,24 @@ const ClubProfile = () => {
   
 
     return(
-     <>  <Row className="g-0">
+     <div className="padding-body">  <Row className="g-0">
           {user && <> <Col md={3}>
-               <div className="ms-3">
+               <div className="d-flex flex-column align-items-center">
                 <img src={user.image} className="profile-img" alt="profile-img" />
                 <i onClick={()=> setEdit(!edit)} className="bi bi-three-dots pointer"/>
                 {edit && <input className="form-control form-control-md mt-2" onChange={(e)=> {uploadImg(e)}} id="formFileLg" type="file" />}
-               {edit && <Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
+               {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
                {!edit && <h3>{user.name}</h3>}
                {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setName(e.target.value)} placeholder="Insert name here..." className="me-2 mt-2" />}
                 {!edit && <h3>Founded on {user.birthdate}</h3>}
-                {edit && <input type="date" style={{ color: "black" }} onChange={(e)=> setBirthdate(e.target.value)} placeholder="Insert year here..." className="me-2 mt-2" />}
                 {!edit && <h3>{user.country}</h3>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2 mt-2" />}
                </div>
-               {edit&&<Button className="m-auto mt-2 w-50 bg-dark mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
+               {edit&&<Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
            </Col>
            <Col md={9} >
-           <div className=" search-sec-container me-2 mt-2 mb-2"> 
-           <h2>Players</h2> 
+           <div className=" search-sec-container me-2 mt-4 mb-2"> 
+           <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Players</h2> 
             <Row className="scroller-club text-center"> 
             <Col> <div onClick={handleShow} className="container mb-4 mt-4 me-4">
 			<div className="card">
@@ -200,7 +199,7 @@ const ClubProfile = () => {
   </div>
            </Col>  </>}
            {viewClub && <> <Col md={3}>
-               <div className="ms-3">
+               <div className="d-flex flex-column align-items-center">
                 <img src={viewClub.image} className="profile-img" alt="profile-img" />
                <h3>{viewClub.name}</h3>
                  <h3>Founded on {viewClub.birthdate}</h3>
@@ -208,8 +207,8 @@ const ClubProfile = () => {
                </div>
            </Col>
            <Col md={9} >
-           <div className=" search-sec-container me-2 mt-2 mb-2"> 
-           <h2>Players</h2> 
+           <div className=" search-sec-container me-2 mt-4 mb-2"> 
+           <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Players</h2> 
             <Row className="scroller-club text-center"> 
             {viewClub.players.map(player => {
     return <Col> <Card refetch={getClub} player={player} id={player._id} name={player.name} image={player.image}
@@ -233,7 +232,7 @@ const ClubProfile = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body><Search refetchAdd={fetchData} handleClose={handleClose} compare={"club"}/></Modal.Body>
-      </Modal></>
+      </Modal></div>
     )
 }
 

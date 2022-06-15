@@ -257,17 +257,17 @@ const PlayerProfile = () => {
                 </div>
                </Col>
             <Col md={9}>
-                <div className="scroller">
+                <div className="scroller mt-4">
                     <div className="search-sec-container ">
-                        <h2>Quality</h2>
+                    <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Quality</h2>
                         <div className="mt-2 m-auto chart-container" >
                         <Chart name={viewPlayer.name} pac={viewPlayer.pac} sho={viewPlayer.sho}  pas={viewPlayer.pas} dri={viewPlayer.dri} def={viewPlayer.def} phy={viewPlayer.phy} />
                         </div>
                     </div>
                     <div className="search-sec-container mt-2">
-                        <div className="d-flex align-items-center justify-content-between">
-                        <h2>Video</h2>
-                        </div>
+                        
+                        <h2 style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid", textAlign: "center"}}>Video</h2>
+                
                       <YoutubeEmbed embedId={viewPlayer.video} />
                     </div>
                 </div>
