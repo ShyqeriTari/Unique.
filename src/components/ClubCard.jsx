@@ -21,7 +21,6 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
           });
           const data = await response.json();
           setFan(data);
-          console.log(data)
         } catch (error) {
           console.log(error);
         }
@@ -71,7 +70,6 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
               },
             })
             if (response.ok) {
-              console.log(response)
               refetchPlayer()
              
             } else {
@@ -101,7 +99,6 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
               },
             })
             if (response.ok) {
-              console.log(response)
               refetchFan()
              
             } else {

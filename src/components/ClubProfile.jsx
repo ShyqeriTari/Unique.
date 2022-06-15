@@ -123,7 +123,6 @@ const ClubProfile = () => {
     })
       .then(function (response) {
         fetchData()
-        console.log(response)
       })
       .catch(function (response) {
         //handle error
@@ -145,7 +144,6 @@ const ClubProfile = () => {
           },
         })
         if (response.ok) {
-          console.log(response)
           fetchData()
          
         } else {

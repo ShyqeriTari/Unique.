@@ -51,7 +51,6 @@ const PlayerProfile = () => {
               }
           });
           const data = await response.json();
-          console.log(data)
           setUser(data);
           
         } catch (error) {
@@ -77,7 +76,6 @@ const PlayerProfile = () => {
               },
             })
             if (response.ok) {
-              console.log(response)
               fetchData()
              
             } else {
@@ -114,7 +112,6 @@ const PlayerProfile = () => {
         })
           .then(function (response) {
             fetchData()
-            console.log(response)
           })
           .catch(function (response) {
             //handle error
@@ -136,7 +133,6 @@ const PlayerProfile = () => {
               },
             })
             if (response.ok) {
-              console.log(response)
               fetchData()
              
             } else {
@@ -171,7 +167,6 @@ const PlayerProfile = () => {
         const data2 = await response2.json();
         if(data._id === data2._id){
         setUser(data2);}else{
-          console.log(data)
           setViewPlayer(data);
         }
         } catch (error) {

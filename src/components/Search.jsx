@@ -43,7 +43,6 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                   }
               });
               const data = await response.json();
-              console.log(data)
               setFetchPlayerResult(data);
             } else{
                 const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player/all`, {
@@ -52,7 +51,6 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                     }
                 });
                 const data = await response.json();
-                console.log(data)
                 setFetchPlayerResult(data);
             }
               
@@ -71,7 +69,6 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                   }
               });
               const data = await response.json();
-              console.log(data)
               setFetchClubResult(data);}else{
                 const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/club/all`, {
                     headers:{
@@ -79,7 +76,6 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                     }
                 });
                 const data = await response.json();
-                console.log(data)
                 setFetchClubResult(data);
               }
               

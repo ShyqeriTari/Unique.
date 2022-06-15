@@ -54,7 +54,6 @@ function Log({ registerView, setRender}) {
         let data = await response.json()
         localStorage.setItem("token", data.accessToken)
         localStorage.setItem("userId", data.id)
-        console.log(data.id)
         navigate("/search")
         setRender(true)
       } else {

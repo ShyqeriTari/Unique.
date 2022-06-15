@@ -64,7 +64,6 @@ const FanProfile = () => {
         })
           .then(function (response) {
             fetchData()
-            console.log(response)
           })
           .catch(function (response) {
             //handle error
@@ -85,7 +84,6 @@ const FanProfile = () => {
               },
             })
             if (response.ok) {
-              console.log(response)
               fetchData()
              
             } else {

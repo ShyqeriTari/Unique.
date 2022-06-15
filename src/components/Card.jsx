@@ -23,7 +23,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
           });
           const data = await response.json();
           setFan(data);
-		  console.log(data)
+		  
         } catch (error) {
           console.log(error);
         }
