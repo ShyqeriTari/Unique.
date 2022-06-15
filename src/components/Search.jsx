@@ -4,7 +4,7 @@ import { useState } from "react"
 import Card from "./Card";
 import ClubCard from "./ClubCard";
 
-const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) => {
+const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, setEditFan, setEditPlayer}) => {
 
     const [birthdate, setBirthdate] = useState("")
     const [position, setPosition] = useState("")
@@ -131,7 +131,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan}) =
         {result && (role === "club" || compare === "player" || compare === "fan") && fetchClubResult && <div className="text-center">
             <h3 className="mb-5" style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid"}}>Clubs Result</h3>
         <Row>
-           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard refetchFan={refetchFan} handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
+           {fetchClubResult && fetchClubResult.map((club, idx )=> <Col key={idx}> <ClubCard setEditPlayer={setEditPlayer} setEditFan={setEditFan} refetchFan={refetchFan} handleClose={handleClose} refetchPlayer={refetchPlayer} compare={compare} refetch={fetchClubSearchResult} club={club} id={club._id} name={club.name} image={club.image} city={club.country} year={club.birthdate} /> </Col>)
   }
         </Row>
         </div>}

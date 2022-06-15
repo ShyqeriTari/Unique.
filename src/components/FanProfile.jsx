@@ -153,7 +153,7 @@ const FanProfile = () => {
             Select your club
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body><Search refetchFan={fetchData} handleClose={handleClose} compare={"fan"}/></Modal.Body>
+        <Modal.Body><Search refetchFan={fetchData} setEditFan={setEdit} handleClose={handleClose} compare={"fan"}/></Modal.Body>
       </Modal>
        </Row>
        </div>

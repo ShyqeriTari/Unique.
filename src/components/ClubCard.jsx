@@ -3,7 +3,7 @@ import "../styles/card.scss"
 import { useEffect, useState } from "react"
 
 
-const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, compare, handleClose, refetchFan}) => {
+const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, compare, handleClose, refetchFan, setEditFan, setEditPlayer}) => {
 
 	const [like, setLike] = useState(false)
 	const [disLike, setDisLike] = useState(false)
@@ -264,7 +264,7 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
 	return (
 		<div className="container mb-4 me-4">
 			<div className="card">{ compare === "player" ? <>
-				<div onClick={()=> {modifyUser(); handleClose()}} className="face face1">
+				<div onClick={()=> {modifyUser(); handleClose(); setEditPlayer(false)}} className="face face1">
 					<h4 className="details">{name}</h4>
 					<h5 className="details mt-2">{city}</h5>
 					<h5 className="details mt-5">{year}</h5>
@@ -279,7 +279,7 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
 				</div>
 				</div>
 				</div> </>: compare === "fan" ? <>
-				<div onClick={()=> {modifyFan(); handleClose()}} className="face face1">
+				<div onClick={()=> {modifyFan(); handleClose(); setEditFan(false)}} className="face face1">
 					<h4 className="details">{name}</h4>
 					<h5 className="details mt-2">{city}</h5>
 					<h5 className="details mt-5">{year}</h5>

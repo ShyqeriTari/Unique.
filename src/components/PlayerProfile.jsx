@@ -283,7 +283,7 @@ const PlayerProfile = () => {
             Select your club
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body><Search refetchPlayer={fetchData} handleClose={handleClose} compare={"player"}/></Modal.Body>
+        <Modal.Body><Search setEditPlayer={setEdit} refetchPlayer={fetchData} handleClose={handleClose} compare={"player"}/></Modal.Body>
       </Modal>
         </Row>
         </div>
