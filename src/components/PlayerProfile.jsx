@@ -211,7 +211,7 @@ const PlayerProfile = () => {
           <Dropdown.Item  onClick={(e) => {setPosition("CF")}}>CF</Dropdown.Item>
       
       </DropdownButton>}
-              {!edit && <Link to={`/club/${user.club?._id}`}> <h3>{user.club?.name}</h3></Link>}
+              {!edit && <Link style={{ textDecoration: 'none' }} to={`/club/${user.club?._id}`}> <h4>{user.club?.name}</h4></Link>}
            {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 ps-2 mb-1 d-flex align-items-center"> <span className="text-white me-2">select club </span> <i style={{fontSize: "25px"}} className="bi bi-binoculars m-auto pointer text-white me-1"/> </div>}
                 {!edit && <h4>{user.birthdate}</h4>}
                     {!edit && <h4>{user.country}</h4>}
@@ -246,7 +246,7 @@ const PlayerProfile = () => {
                     <img src={viewPlayer.image} className="profile-img" alt="profile-img" />
                      <h4>{viewPlayer.name}</h4>
                     <h4>{viewPlayer.position}</h4>{ localStorage.getItem("userId") === viewPlayer.club?._id ?
-                   <Link to={`/me`}> <h3>{viewPlayer.club?.name}</h3></Link>:<Link to={`/club/${viewPlayer.club?._id}`}> <h3>{viewPlayer.club?.name}</h3></Link>}
+                   <Link style={{ textDecoration: 'none' }} to={`/me`}> <h4>{viewPlayer.club?.name}</h4></Link>:<Link style={{ textDecoration: 'none' }} to={`/club/${viewPlayer.club?._id}`}> <h4>{viewPlayer.club?.name}</h4></Link>}
                     <h4>{viewPlayer.birthdate}</h4>
                      <h4>{viewPlayer.country}</h4>
                 </div>
@@ -273,10 +273,11 @@ const PlayerProfile = () => {
         onHide={() => handleClose()}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="example-modal-sizes-title-lg">
             Select your club
           </Modal.Title>
+          <i className="bi bi-x-circle-fill pointer" onClick={handleClose} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><Search setEditPlayer={setEdit} refetchPlayer={fetchData} handleClose={handleClose} compare={"player"}/></Modal.Body>
       </Modal>

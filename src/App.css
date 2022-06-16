@@ -139,9 +139,11 @@
 }
 
 .compare-infos{
-  min-height: 250px;
-  max-height: 250px;
+  min-height: 180px;
+  max-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
+

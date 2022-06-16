@@ -170,10 +170,10 @@ const ClubProfile = () => {
                 <i onClick={()=> setEdit(!edit)} className="bi bi-three-dots pointer"/>
                 {edit && <input className="form-control form-control-md mt-2" onChange={(e)=> {uploadImg(e)}} id="formFileLg" type="file" />}
                {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
-               {!edit && <h3>{user.name}</h3>}
+               {!edit && <h4>{user.name}</h4>}
                {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setName(e.target.value)} placeholder="Insert name here..." className="me-2 mt-2" />}
-                {!edit && <h3>Founded on {user.birthdate}</h3>}
-                {!edit && <h3>{user.country}</h3>}
+                {!edit && <h4>Founded on {user.birthdate}</h4>}
+                {!edit && <h4>{user.country}</h4>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2 mt-2" />}
                </div>
                {edit&&<Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e)=> {setEdit(false); modifyUser(e)}}>Save</Button>}
@@ -224,10 +224,11 @@ const ClubProfile = () => {
         onHide={() => handleClose()}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
+        <Modal.Header >
           <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
+            Select player
           </Modal.Title>
+          <i className="bi bi-x-circle-fill pointer" onClick={handleClose} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><Search refetchAdd={fetchData} handleClose={handleClose} compare={"club"}/></Modal.Body>
       </Modal></div>

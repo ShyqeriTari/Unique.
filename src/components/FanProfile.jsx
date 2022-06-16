@@ -109,10 +109,10 @@ const FanProfile = () => {
                 <i onClick={()=> setEdit(!edit)} className="bi bi-three-dots pointer"/>
                {edit && <input className="form-control form-control-md mt-2" onChange={(e)=> {uploadImg(e)}} id="formFileLg" type="file" />}
                {edit && <Button className="m-auto mt-2 w-50 bg-success mb-4" onClick={(e) => {setEdit(false); submitFile(e)}}>Save Image</Button>}
-                {!edit && <h3>{user.name}</h3>}
+                {!edit && <h4>{user.name}</h4>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setName(e.target.value)} placeholder="Insert name here..." className="me-2 mt-2" />}
-                {!edit && <h3>{user.club?.name}</h3>}
-                {!edit && <h3>{user.country}</h3>}
+                {!edit && <h4>{user.club?.name}</h4>}
+                {!edit && <h4>{user.country}</h4>}
                 {edit && <div onClick={handleShow} className="pointer bg-dark mt-1 ps-2 mb-1 d-flex align-items-center"> <span className="text-white me-2">select club </span> <i style={{fontSize: "25px"}} className="bi bi-binoculars m-auto pointer text-white me-1"/> </div>}
                 {edit && <input type="text" style={{ color: "black" }} onChange={(e)=> setCountry(e.target.value)} placeholder="Insert country here..." className="me-2" />}
                </div>
@@ -146,10 +146,11 @@ const FanProfile = () => {
         onHide={() => handleClose()}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
+        <Modal.Header >
           <Modal.Title id="example-modal-sizes-title-lg">
             Select your club
           </Modal.Title>
+          <i className="bi bi-x-circle-fill pointer" onClick={handleClose} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><Search refetchFan={fetchData} setEditFan={setEdit} handleClose={handleClose} compare={"fan"}/></Modal.Body>
       </Modal>

@@ -38,7 +38,7 @@ return(
         borderWidth: 1,
       },
       {
-        label: player1.name === undefined ? "player two" : player2.name,
+        label: player2.name === undefined ? "player two" : player2.name,
         data: [ player2.sho, player2.pas, player2.dri, player2.def, player2.phy, player2.pac],
         fill:true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',

@@ -101,11 +101,11 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Position"} icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
 
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"} size={"140%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"} size={"175%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
-        <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
+        <Button variant="dark" className="search-button m-auto mb-3 p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>
         </>}
         {!result && (role === "club" || compare === "player" || compare === "fan") && <>
 
@@ -117,7 +117,9 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
 
         <Button variant="dark" className="search-button m-auto p-3" onClick={(e)=> {setResult(true); fetchClubSearchResult(e)} }>Search</Button>
         </>}
-            {result && role === "player" && fetchPlayerResult && <div className="text-center">
+            {result && role === "player" && fetchPlayerResult &&
+            
+            <div className="text-center">
             <h3 className="mb-5" style={{borderBottom: "0.5px solid", padding: "5px", borderTop: "0.5px solid"}}>Players Result</h3>
         <Row>
            {fetchPlayerResult && fetchPlayerResult.map((player, idx )=> <Col key={idx}> <Card refetchAdd={refetchAdd} refetch={fetchPlayerSearchResult} handleClose={handleClose} player={player} compare={compare} id={player._id}  name={player.name} image={player.image} nationality={player.country} club={player.club?.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}/> </Col>)
