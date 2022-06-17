@@ -37,7 +37,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
         e.preventDefault()
             try {
                 if(names !== "" || country !== "" || birthdate !== "" || position !== "" ){
-              const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player?name=/${names}/i&country=/${country}/i&birthdate=/${birthdate}/i&position=/${position}/i`, {
+              const response = await fetch(process.env.REACT_APP_LOCAL_URL + `/player?${names !== ""? "name=/" + names + "/i&" : ""}${country !== ""? "country=/" + country + "/i&" : ""}${birthdate !== ""? "birthdate=/" + birthdate + "/i&" : ""}${position !== ""? "position=/" + position + "/i&" : ""}`, {
                   headers:{
                       "Authorization": `Bearer ${localStorage.getItem("token")}`
                   }
