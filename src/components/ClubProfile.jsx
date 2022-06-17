@@ -11,6 +11,8 @@ const ClubProfile = () => {
 
     const [show, setShow] = useState(false);
 
+    const [show2, setShow2] = useState(false);
+
     const [user, setUser] = useState(undefined)
 
     const [name, setName] = useState(undefined)
@@ -21,8 +23,12 @@ const ClubProfile = () => {
 
     const [viewClub, setViewClub] = useState(undefined)
 
+    const [currentPlayer, setCurrentPlayer] = useState(undefined)
+
   const handleClose = () => setShow(false);
+  const handleClose2 = () => setShow2(false);
   const handleShow = () => setShow(true);
+  const handleShow2 = () => setShow2(true);
 
   const params = useParams()
 
@@ -188,11 +194,11 @@ const ClubProfile = () => {
 			</div>
 		</div> </Col>
             {user.players.map(player => {
-    return <Col> <span onClick={()=> {removePlayerFromClub(player._id)}} className="text-danger pointer">Remove</span> <Card id={player._id} refetch={fetchData} player={player} name={player.name} image={player.image}
+    return <Col> <span onClick={()=> {handleShow2(); setCurrentPlayer(player._id)}} className="text-danger pointer">Remove</span> <Card id={player._id} refetch={fetchData} player={player} name={player.name} image={player.image}
     nationality={player.country} club={player.club.name} position={player.position} pac={player.pac} sho={player.sho}  pas={player.pas} dri={player.dri} def={player.def} phy={player.phy}
      />  </Col>
   })}
-  
+
   </Row>
   </div>
            </Col>  </>}
@@ -231,6 +237,21 @@ const ClubProfile = () => {
           <i className="bi bi-x-circle-fill pointer" onClick={handleClose} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><Search refetchAdd={fetchData} handleClose={handleClose} compare={"club"}/></Modal.Body>
+      </Modal>
+      
+      <Modal
+        size="md"
+        show={show2}
+        onHide={() => handleClose2()}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header >
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Are you sure to remove player?
+          </Modal.Title>
+          <i className="bi bi-x-circle-fill pointer" onClick={handleClose2} style={{fontSize: "25px"}}></i>
+        </Modal.Header>
+        <Modal.Body><div className="d-flex justify-content-around"><i onClick={()=> {removePlayerFromClub(currentPlayer); handleClose2()}} className="bi bi-hand-thumbs-up pointer" style={{fontSize: "30px", color: "green"}}></i><i onClick={handleClose2} className="bi bi-hand-thumbs-down pointer" style={{fontSize: "30px", color: "red"}}></i></div></Modal.Body>
       </Modal></div>
     )
 }
