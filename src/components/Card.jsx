@@ -346,7 +346,7 @@ const Card = ({image, club, position, pac, sho, pas, dri, def, phy, nationality,
 				</Link>}
 				<div className="face face2 d-flex flex-column align-items-center justify-content-end" style={{backgroundImage:`url(${image})`}}>
 				<div className="card-name">
-				<h2 className="mt-2">{name}</h2>{ localStorage.getItem("userId") !== id &&
+				<h2 className="mt-2 text-one">{name}</h2>{ localStorage.getItem("userId") !== id &&
 				<div className="d-flex m-2 justify-content-around">
 				{ player && player?.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"><span className="ms-1">{player?.like.length}</span></i>  : <i onClick={(e)=> {if(player.dislike.includes(localStorage.getItem("userId"))){removeDisLike(e); addLike(e); }else{addLike(e)}}} className= "bi bi-heart judge"><span className="ms-1">{player?.like.length}</span></i>}
 				{  player && player?.dislike.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"><span className="ms-1">{player?.dislike.length}</span></i>:<i onClick={(e)=> {if(player.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"><span className="ms-1">{player?.dislike.length}</span></i>}

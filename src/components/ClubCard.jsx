@@ -312,7 +312,7 @@ const ClubCard = ({image, club, year, name, city, id, refetch, refetchPlayer, co
 				</Link>
 				<div className="face face2 d-flex flex-column align-items-center justify-content-end" style={{backgroundImage:`url(${image})`}}>
 				<div className="card-name">
-				<h2 className="mt-2">{name}</h2>
+				<h2 className="mt-2 text-one">{name}</h2>
 				 <div className="d-flex m-2 justify-content-around">
 				{club && club?.like.includes(localStorage.getItem("userId")) ? <i onClick={(e)=> { removeLike(e)}} className="bi bi-heart-fill red-like judge"><span className="ms-1">{club?.like.length}</span></i> : <i onClick={(e)=> {if(club.dislike.includes(localStorage.getItem("userId"))){addLike(e); removeDisLike(e)}else{addLike(e)} }} className= "bi bi-heart judge"><span className="ms-1">{club?.like.length}</span></i>}
 				{club && club?.dislike.includes(localStorage.getItem("userId")) ?<i onClick={(e)=> {removeDisLike(e)}} className="bi bi-heartbreak-fill red-like judge"><span className="ms-1">{club?.dislike.length}</span></i>:<i onClick={(e)=> {if(club.like.includes(localStorage.getItem("userId"))){removeLike(e); addDisLike(e)}else{addDisLike(e)}}} className= "bi bi-heartbreak judge"><span className="ms-1">{club?.dislike.length}</span></i>}
