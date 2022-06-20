@@ -17,6 +17,8 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
 
     const location = window.location.pathname 
 
+    const mediaMatch = window.matchMedia('(min-width: 400px)')
+
     const changeName = (value) => {
         setNames(value)
     }
@@ -102,7 +104,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Name"}  icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Position"}  icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
 
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"}  size={"152%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"} size={mediaMatch.matches ? "150%": "175%"} icon={"bi bi-calendar-week"} type={"number"} text={"1990..."} min={1900} max={2022} setValue={changeBirthdate}/></Col>
                 <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Country"}  icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
