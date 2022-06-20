@@ -33,6 +33,7 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
         setPosition(value)
     }
 
+
     const fetchPlayerSearchResult = async (e) => {
         e.preventDefault()
             try {
@@ -98,11 +99,11 @@ const Search = ({compare, handleClose, refetchAdd, refetchPlayer, refetchFan, se
            {!result && role === "player" && compare !== "player" && compare !== "fan" && <> 
 
             <Row className="mb-4 mt-5 d-flex">
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Name"} icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Position"} icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Name"}  icon={"bi bi-person-fill"} type={"text"} text={"name..."} setValue={changeName} /></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Position"}  icon={"bi bi-bullseye"} type={"text"} text={"position..."} setValue={changePosition} /></Col>
 
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"} size={"175%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
-                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Country"} icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Birth year"}  size={"152%"} icon={"bi bi-calendar-week"} type={"number"} min={1900} max={2022} setValue={changeBirthdate}/></Col>
+                <Col sm={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} md={compare === "club" || compare === "1" || compare === "2" ? 12 : 6} lg={6}><SearchSection title={"Country"}  icon={"bi bi-globe"} type={"text"} text={"country..."} setValue={changeCountry}/></Col>
             </Row>
 
         <Button variant="dark" className="search-button m-auto mb-3 p-3" onClick={(e)=> {setResult(true); fetchPlayerSearchResult(e)} }>Search</Button>

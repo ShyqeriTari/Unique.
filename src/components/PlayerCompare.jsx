@@ -35,10 +35,10 @@ const PlayerCompare = () => {
 			</div>}</div>
       {player1.name && <div className=" d-flex flex-column align-items-center">
                 <img src={player1.image} className="profile-img" alt="profile-img" />
-             <div className="compare-infos"> {player1._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player1.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player1._id}`}><h5>{player1.name}</h5></Link>}
+             <div className="compare-infos"> {player1._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player1.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player1._id}`}><h5 className="text-one">{player1.name}</h5></Link>}
                  <h6>{player1.position}</h6>
-                 {player1.club?.name && player1.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player1.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player1.club?._id}`}><h5>{player1.club?.name}</h5></Link>}
-                 <h5>{player1.birthdate}</h5>
+                 {player1.club?.name && player1.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player1.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player1.club?._id}`}><h5 className="text-one">{player1.club?.name}</h5></Link>}
+                 <h6>{player1.birthdate}</h6>
                  <div onClick={handleShow} className="container pointer mb-2 mt-2">
                    <Button  variant="dark" className="search-compare-button p-2"><i className="bi bi-binoculars" style={{fontSize: "13px"}}></i></Button>
                </div></div>
@@ -51,11 +51,11 @@ const PlayerCompare = () => {
 			</div>}</div>
       {player2.name && <> <div className=" d-flex flex-column align-items-center">
                 <img src={player2.image} className="profile-img" alt="profile-img" />
-                <div className="compare-infos">  {player2._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player2.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player2._id}`}><h5>{player2.name}</h5></Link>}
+                <div className="compare-infos">  {player2._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player2.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player2._id}`}><h5 className="text-one">{player2.name}</h5></Link>}
                  <h6>{player2.position}</h6>
-                 {player2.club?.name && player2.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player2.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player2.club?._id}`}><h5>{player2.club?.name}</h5></Link>}
-                 <h5>{player2.birthdate}</h5>
-                 <div onClick={handleShow2} className="container pointer mb-4 mt-3 me-4">
+                 {player2.club?.name && player2.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player2.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player2.club?._id}`}><h5 className="text-one">{player2.club?.name}</h5></Link>}
+                 <h6>{player2.birthdate}</h6>
+                 <div onClick={handleShow2} className="container pointer mb-2 mt-2 ">
                    <Button  variant="dark" className="search-compare-button p-2"><i className="bi bi-binoculars" style={{fontSize: "13px"}}></i></Button>
                </div> </div></div> </>}
            </Col>
@@ -71,11 +71,11 @@ const PlayerCompare = () => {
 			</div>}</div>
       {player2.name && <> <div className="ms-3 d-flex flex-column align-items-center">
                 <img src={player2.image} className="profile-img" alt="profile-img" />
-                <div className="compare-infos"> {player2._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player2.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player2._id}`}><h5>{player2.name}</h5></Link>}
+                <div className="compare-infos"> {player2._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player2.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/player/${player2._id}`}><h5 className="text-one">{player2.name}</h5></Link>}
                  <h6>{player2.position}</h6>
-                 {player2.club?.name && player2.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5>{player2.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player2.club?._id}`}><h5>{player2.club?.name}</h5></Link>}
-                 <h5>{player2.birthdate}</h5>
-                 <div onClick={handleShow2} className="container pointer mb-4 mt-3 me-4">
+                 {player2.club?.name && player2.club?._id === localStorage.getItem("userId") ? <Link style={{ textDecoration: 'none' }} to={`/me`}><h5 className="text-one">{player2.club?.name}</h5></Link> : <Link style={{ textDecoration: 'none' }} to={`/club/${player2.club?._id}`}><h5 className="text-one">{player2.club?.name}</h5></Link>}
+                 <h6>{player2.birthdate}</h6>
+                 <div onClick={handleShow2} className="container pointer mb-2 mt-2">
                    <Button  variant="dark" className="search-compare-button p-2"><i className="bi bi-binoculars" style={{fontSize: "13px"}}></i></Button>
                </div> </div> </div> </>}
            </Col>
